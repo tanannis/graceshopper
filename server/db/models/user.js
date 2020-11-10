@@ -1,12 +1,24 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const _ = require('lodash')
 
 const User = db.define('user', {
+  firstName: {
+    type: Sequelize.STRING
+    // allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING
+    // allowNull: false
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   },
   password: {
     type: Sequelize.STRING,
@@ -15,6 +27,11 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('password')
     }
+  },
+  userType: {
+    type: Sequelize.ENUM('user', 'admin'),
+    defaultValue: 'user',
+    allowNull: false
   },
   salt: {
     type: Sequelize.STRING,
@@ -36,6 +53,11 @@ module.exports = User
  */
 User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
+}
+
+//on our api when we list our password/salt in json, it won’t display it
+User.prototype.sanitize = function() {
+  return _.omit(this.toJSON(), ['password', 'salt'])
 }
 
 /**
