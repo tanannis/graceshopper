@@ -2,16 +2,17 @@
 
 const faker = require('faker')
 const db = require('../server/db')
-const {User, Cart, CartItem, Product} = require('../server/db/models')
+const {User, Order, OrderItem, Product} = require('../server/db/models')
 
 const usersArray = []
 const productsArray = []
-const cartsArray = [{userId: 1}, {userId: 2}, {userId: 3}, {userId: 4}]
-const cartItemsArray = [
-  {cartId: 1, productId: 1},
-  {cartId: 2, productId: 2},
-  {cartId: 3, productId: 3},
-  {cartId: 4, productId: 4}
+const ordersArray = [{userId: 1}, {userId: 2}, {userId: 3}, {userId: 4}]
+const orderItemsArray = [
+  {orderId: 1, productId: 1},
+  {orderId: 2, productId: 2},
+  {orderId: 3, productId: 3},
+  {orderId: 4, productId: 4},
+  {orderId: 4, productId: 3}
 ]
 
 async function seed() {
@@ -43,21 +44,21 @@ async function seed() {
       return Product.create(product)
     })
   )
-  const carts = await Promise.all(
-    cartsArray.map(cart => {
-      return Cart.create(cart)
+  const orders = await Promise.all(
+    ordersArray.map(order => {
+      return Order.create(order)
     })
   )
-  const cartItems = await Promise.all(
-    cartItemsArray.map(cartItem => {
-      return CartItem.create(cartItem)
+  const orderItems = await Promise.all(
+    orderItemsArray.map(orderItem => {
+      return OrderItem.create(orderItem)
     })
   )
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
-  console.log(`seeded ${carts.length} carts`)
-  console.log(`seeded ${cartItems.length} cart items`)
+  console.log(`seeded ${orders.length} orders`)
+  console.log(`seeded ${orderItems.length} order items`)
   console.log(`seeded successfully`)
 }
 
