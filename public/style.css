@@ -19,3 +19,8 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.product-pic {
+  max-width: 300px;
+  max-height: 300px;
+}

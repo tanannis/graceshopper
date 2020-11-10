@@ -1,43 +1,41 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {fetchSingleProduct} from '../store/singleProduct'
 
-class SingleCampus extends React.Component {
+class SingleProduct extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      loading: 'loading'
+    }
+  }
   componentDidMount() {
-    this.props.getSingleCampus(this.props.match.params.id)
+    this.props.getSingleProduct(this.props.match.params.id)
+    // this.state.loading = 'ready'
+  }
+
+  componentWillUnmount() {
+    // this.setState.loading = 'loading'
   }
 
   render() {
-    const campus = this.props.campus.info
-    const students = this.props.campus.info.students
-    const {unregisterStudent} = this.props
+    const product = this.props.product
+    console.log('PROPs', this.props)
+    console.log('PRODUCT', this.props.product)
+
+    if (this.state.loading === 'loading') {
+      return <div>LOADING!!!</div>
+    }
 
     return (
       <div>
-        <h1>{campus.name}</h1>
-        <img src={campus.imageUrl} />
-        <p>Address: {campus.address}</p>
-        <p>Description: {campus.description}</p>
-        <p>
-          Students:
-          {students.length > 0 ? (
-            students.map(student => {
-              return (
-                <li key={student.id}>
-                  {student.firstName} {student.lastName}
-                  &nbsp;
-                  <button onClick={() => unregisterStudent(student.id)}>
-                    Unregister
-                  </button>
-                </li>
-              )
-            })
-          ) : (
-            <li> This campus has no student yet. </li>
-          )}
-        </p>
+        <h1>{product.name}</h1>
+        <img src={product.imageUrl} className="product-pic" />
+        <p>Price: {product.price}</p>
+        <p>Description: {product.description}</p>
         <div>
-          <h3>Update Campus Info:</h3>
-          <UpdateCampusForm />
+          <h3>Update Product Info:</h3>
+          {/* <UpdateProductForm /> */}
         </div>
       </div>
     )
@@ -45,16 +43,16 @@ class SingleCampus extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('STATE', state)
   return {
-    campus: state.singleCampus
+    product: state.singleProduct
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getSingleCampus: id => dispatch(fetchSingleCampus(id)),
-    unregisterStudent: id => dispatch(fetchUnlinked(id))
+    getSingleProduct: id => dispatch(fetchSingleProduct(id))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleCampus)
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
