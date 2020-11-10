@@ -20,6 +20,10 @@ form div {
   display: inline-block;
 }
 
+
+img {
+  width: 200px;
+
 .product-pic {
   max-width: 300px;
   max-height: 300px;
