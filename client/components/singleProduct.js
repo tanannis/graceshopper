@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
+import UpdateProductForm from './updateProductForm'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -8,14 +9,26 @@ class SingleProduct extends React.Component {
     this.state = {
       loading: 'loading'
     }
+    this.handleClick.bind(this)
   }
+  handleClick = product => {
+    /// handle click functionality goes here!
+    /// check if user or session has a cart, if not create a cart
+    /// Add Item to cart
+    /// Add a number by the cart to confirm add or have pop-up saying added!
+  }
+
   componentDidMount() {
     this.props.getSingleProduct(this.props.match.params.id)
-    // this.state.loading = 'ready'
+    this.setState({
+      loading: 'ready'
+    })
   }
 
   componentWillUnmount() {
-    // this.setState.loading = 'loading'
+    this.setState({
+      loading: 'loading'
+    })
   }
 
   render() {
@@ -31,11 +44,18 @@ class SingleProduct extends React.Component {
       <div>
         <h1>{product.name}</h1>
         <img src={product.imageUrl} className="product-pic" />
-        <p>Price: {product.price}</p>
+        <p>Price: ${product.price}</p>
         <p>Description: {product.description}</p>
+        <button
+          className="btn"
+          type="button"
+          onClick={() => this.handleClick(product)}
+        >
+          Add to Cart!
+        </button>
         <div>
           <h3>Update Product Info:</h3>
-          {/* <UpdateProductForm /> */}
+          <UpdateProductForm />
         </div>
       </div>
     )

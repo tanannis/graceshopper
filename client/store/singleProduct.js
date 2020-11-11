@@ -37,7 +37,7 @@ export const fetchUpdatedProduct = product => {
       const {data} = await axios.put(`/api/products/${product.id}`, product)
       dispatch(updateProduct(data))
     } catch (error) {
-      next(error)
+      console.log(error)
     }
   }
 }
@@ -49,6 +49,8 @@ const initialState = {}
 export const singleProduct = (state = initialState, action) => {
   switch (action.type) {
     case PICK_PRODUCT:
+      return action.product
+    case UPDATE_PRODUCT:
       return action.product
     default:
       return state

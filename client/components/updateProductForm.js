@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUpdatedProduct} from '../store/singleProduct'
 
-class UpdateSingleProduct extends React.Component {
+class UpdateProductForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,9 +19,21 @@ class UpdateSingleProduct extends React.Component {
       [evt.target.name]: evt.target.value
     })
   }
+
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.updateProductData(this.state)
+    let updatedProduct = {...this.props.product}
+    if (this.state.name !== '') {
+      updatedProduct.name = this.state.name
+    }
+    if (this.state.price !== '') {
+      updatedProduct.price = parseFloat(this.state.price)
+    }
+    if (this.state.description !== '') {
+      updatedProduct.description = this.state.description
+    }
+    console.log(updatedProduct)
+    this.props.updateProductData(updatedProduct)
     this.setState({
       name: '',
       price: '',
@@ -44,7 +56,7 @@ class UpdateSingleProduct extends React.Component {
 
             <input
               type="text"
-              name="address"
+              name="price"
               value={this.state.price}
               onChange={this.handleChange}
               placeholder="price"
@@ -65,10 +77,17 @@ class UpdateSingleProduct extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  console.log('STATE', state)
+  return {
+    product: state.singleProduct
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     updateProductData: product => dispatch(fetchUpdatedProduct(product))
   }
 }
 
-export default connect(null, mapDispatchToProps)(UpdateProductForm)
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateProductForm)
