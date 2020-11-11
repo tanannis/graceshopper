@@ -9,35 +9,68 @@ import {Link} from 'react-router-dom'
 //testing to see if this will push to github?
 
 export class AllProducts extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
   async componentDidMount() {
     await this.props.getProducts()
   }
   render() {
     const products = this.props.products || []
-    console.log('im hereeee', this.props)
 
     return (
-      <div>
-        <ul>
-          {// products.length === 0
-          !products && !products.length
-            ? 'No products found'
-            : products.map(product => (
-                <li key={product.id}>
-                  <p>{product.name}</p>
-                  <Link to={`/products/${product.id}`}>
-                    <img src={product.imageUrl} />
-                  </Link>
-                  {/* <button onClick={() => this.props.deleteProduct(product.id)}>
+      // <div>
+      //   <ul>
+      //     {// products.length === 0
+      //     !products && !products.length
+      //       ? 'No products found'
+      //       : products.map(product => (
+      //           <li key={product.id}>
+      //             <p>{product.name}</p>
+      //             <Link to={`/products/${product.id}`}>
+      //               <img src={product.imageUrl} />
+      //             </Link>
+      //             {/* <button onClick={() => this.props.deleteProduct(product.id)}>
+      //               X
+      //             </button> */}
+      //           </li>
+      //         ))}
+      //   </ul>
+      //   {/* <CreateProduct /> */}
+      // </div>
+
+      <div className="productsBody">
+        <div className="allProductsContainer">
+          {products && products.length ? (
+            products.map(product => {
+              return (
+                <div className="productBox" key={product.id}>
+                  <h2 className="productName">
+                    <a href={`/products/${product.id}`}>{product.name}</a>
+                  </h2>
+                  <a href={`/products/${product.id}`}>
+                    <img className="productImages" src={product.imageUrl} />
+                  </a>
+                  <p>${product.price}</p>
+                  <p>{product.description}</p>
+                  <button
+                    type="button"
+                    className="removeProductButton"
+                    // onClick={() => this.handleClick(product.id)}
+                  >
                     X
-                  </button> */}
-                </li>
-              ))}
-        </ul>
-        {/* <CreateProduct /> */}
+                  </button>
+                </div>
+              )
+            })
+          ) : (
+            <div>No products available</div>
+          )}
+        </div>
+        {/* <div className="form">
+          <h2>Add New Campus:</h2>
+          <NewCampusForm />
+        </div> */}
       </div>
     )
   }
