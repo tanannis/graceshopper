@@ -6,7 +6,12 @@ const {User, Order, OrderItem, Product} = require('../server/db/models')
 
 const usersArray = []
 const productsArray = []
-const ordersArray = [{userId: 1}, {userId: 2}, {userId: 3}, {userId: 4}]
+const ordersArray = [
+  {userId: 1},
+  {userId: 2},
+  {userId: 3},
+  {sessionId: 'akdjflke234'}
+]
 const orderItemsArray = [
   {orderId: 1, productId: 1},
   {orderId: 2, productId: 2},
