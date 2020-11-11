@@ -33,8 +33,10 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
+    const cart = this.props.cart
     console.log('PROPs', this.props)
     console.log('PRODUCT', this.props.product)
+    console.log('CART', cart)
 
     if (this.state.loading === 'loading') {
       return <div>LOADING!!!</div>
@@ -65,7 +67,8 @@ class SingleProduct extends React.Component {
 const mapStateToProps = state => {
   console.log('STATE', state)
   return {
-    product: state.singleProduct
+    product: state.singleProduct,
+    cart: state.cart
   }
 }
 
