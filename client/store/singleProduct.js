@@ -83,6 +83,8 @@ export const singleProduct = (state = initialState, action) => {
   switch (action.type) {
     case PICK_PRODUCT:
       return action.product
+    case UPDATE_PRODUCT:
+      return action.product
     default:
       return state
   }
