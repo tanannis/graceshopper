@@ -20,11 +20,50 @@ form div {
   display: inline-block;
 }
 
-
 img {
   width: 200px;
+}
 
 .product-pic {
   max-width: 300px;
   max-height: 300px;
+}
+
+/* Riley took button styling from JPFP - but we can always change it! */
+
+button {
+  padding: 10px;
+  border: none;
+  background-color: #3f51b5;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 80%;
+}
+
+/* allProductsCSS */
+
+.allProductsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.productsBody {
+  display: flex;
+  justify-content: space-around;
+}
+
+.productBox {
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin: 15px;
+  width: 300px;
+  border: black solid 2px;
+}
+
+.productName {
+  height: 40px;
 }
