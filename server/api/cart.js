@@ -34,3 +34,18 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+//Add items to cart and modify current cart
+//add to orderItem, must have correct orderId that's related to the cart
+// router.post('/', async (req, res, next) =>{
+//   try {
+//     //req.user to find open order
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
+//steps:
+//add items to cart
+//match item by item id?
+//
