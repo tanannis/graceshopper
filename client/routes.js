@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, AllProducts} from './components'
 import {me} from './store'
 import singleProduct from './components/singleProduct'
+import NewProductForm from './components/NewProductForm'
 
 /**
  * COMPONENT
@@ -25,6 +26,7 @@ class Routes extends Component {
 
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={singleProduct} />
+        <Route exact path="/addproduct" component={NewProductForm} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
