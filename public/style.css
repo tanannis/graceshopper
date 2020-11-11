@@ -46,7 +46,7 @@ button {
 .allProductsContainer {
   display: flex;
   flex-wrap: wrap;
-  width: 60%;
+  width: 90%;
 }
 
 .productsBody {
