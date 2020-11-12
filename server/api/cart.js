@@ -28,12 +28,11 @@ router.get('/', async (req, res, next) => {
       where: {id: cartId},
       include: [Product]
     })
-    res.send(cartItems)
+    res.send(cartItems[0])
   } catch (err) {
     next(err)
   }
 })
-
 
 //increment quantity of item in cart
 router.put('/:id', async (req, res, next) => {
@@ -66,13 +65,13 @@ router.put('/:id', async (req, res, next) => {
     await orderItemToIncrement.update({
       quantity: orderItemToIncrement.quantity + 1
     })
+    console.log('PUT REQUEST ', orderItemToIncrement)
     res.json(orderItemToIncrement)
-    } catch (error) {
+  } catch (error) {
     next(error)
   }
 })
 
-   
 router.post('/', async (req, res, next) => {
   try {
     console.log('BODY', req.body)
@@ -83,7 +82,6 @@ router.post('/', async (req, res, next) => {
     })
     console.log(newItem)
     res.json(newItem)
-
   } catch (error) {
     next(error)
   }

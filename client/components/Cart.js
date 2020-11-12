@@ -18,7 +18,7 @@ export class Cart extends React.Component {
   }
 
   render() {
-    const cart = this.props.cart[0] || []
+    const cart = this.props.cart || {}
     const products = cart.products
     let numOfProducts = 0
     let total = 0

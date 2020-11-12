@@ -13,17 +13,24 @@ export class BabyCart extends React.Component {
   // }
 
   render() {
-    const cart = this.props.cart[0] || []
-    console.log('CART!', cart)
-    console.log('PRODUCTS', cart.products)
+    const cart = this.props.cart || {}
+    const products = cart.products
+    let numOfProducts = 0
+    if (products) {
+      numOfProducts = products.reduce(function(accum, current) {
+        return accum + current.orderItem.quantity
+      }, 0)
+    }
 
     return (
       <div>
-        <img
-          src="https://static.thenounproject.com/png/304392-200.png"
-          className="cart-img"
-        />
-        {cart.products && cart.products.length ? cart.products.length : 0}
+        <a href="/cart">
+          <img
+            src="https://static.thenounproject.com/png/304392-200.png"
+            className="cart-img"
+          />
+          {products && products.length ? numOfProducts : 0}
+        </a>
       </div>
     )
   }
