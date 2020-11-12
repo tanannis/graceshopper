@@ -17,11 +17,15 @@ export class BabyCart extends React.Component {
     console.log('CART!', cart)
     console.log('PRODUCTS', cart.products)
 
-    if (cart.products && cart.products.length) {
-      return <div>Cart: {cart.products.length}</div>
-    } else {
-      return <div>Cart: 0</div>
-    }
+    return (
+      <div>
+        <img
+          src="https://static.thenounproject.com/png/304392-200.png"
+          className="cart-img"
+        />
+        {cart.products && cart.products.length ? cart.products.length : 0}
+      </div>
+    )
   }
 }
 

@@ -35,17 +35,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//Add items to cart and modify current cart
-//add to orderItem, must have correct orderId that's related to the cart
-// router.post('/', async (req, res, next) =>{
-//   try {
-//     //req.user to find open order
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
-//steps:
-//add items to cart
-//match item by item id?
-//
+router.post('/', async (req, res, next) => {
+  try {
+    console.log('BODY', req.body)
+    const newItem = await OrderItem.create({
+      quantity: req.body.quantity,
+      orderId: req.body.orderId,
+      productId: req.body.productId
+    })
+    console.log(newItem)
+    res.json(newItem)
+  } catch (error) {
+    next(error)
+  }
+})
