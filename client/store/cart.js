@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const GET_CART = 'GET_CART'
-// const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const ADD_NEW_ITEM_TO_CART = 'ADD_NEW_ITEM_TO_CART'
+//const ADD_EXISTING_ITEM_TO_CART = 'ADD_EXISTING_ITEM_TO_CART'
 
 //action creators
 export const getCart = cart => {
@@ -11,17 +12,17 @@ export const getCart = cart => {
   }
 }
 
-// export const updateProduct = product => {
-//   return {
-//     type: UPDATE_PRODUCT,
-//     product
-//   }
-// }
+export const addNewItemToCart = itemToAdd => {
+  return {
+    type: ADD_NEW_ITEM_TO_CART,
+    itemToAdd
+  }
+}
 
-// export const deleteSingleProduct = id => {
+// export const addExistingItemToCart = itemToAdd => {
 //   return {
-//     type: DELETE_PRODUCT,
-//     id
+//     type: ADD_EXISTING_ITEM_TO_CART,
+//     itemToAdd
 //   }
 // }
 
@@ -29,7 +30,7 @@ export const getCart = cart => {
 export const fetchCart = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('api/cart')
+      const {data} = await axios.get('/api/cart')
       dispatch(getCart(data))
       console.log('DATA!!', data)
     } catch (error) {
@@ -38,53 +39,31 @@ export const fetchCart = () => {
   }
 }
 
-// export const fetchUpdatedProduct = (product) => {
-//   return async (dispatch) => {
-//     try {
-//       const {data} = await axios.put(`/api/products/${product.id}`, product)
-//       dispatch(updateProduct(data))
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
-
-// export const deleteProduct = (id) => {
-//   return async () => {
-//     try {
-//       await axios.delete(`/api/products/${id}`)
-//       // dispatch(deleteSingleProduct(id))
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
-
-// export const addProduct = (product) => {
-//   // if (!campus.imageUrl) {
-//   //   campus.imageUrl =
-//   //     "https://media.istockphoto.com/vectors/vector-school-building-vector-id186655818?k=6&m=186655818&s=612x612&w=0&h=4LAjSdZViLIyvYNILscpMjbkd2e6_2mPa3yf-cStV3Q=";
-//   // }
-//   return async () => {
-//     try {
-//       await axios.post('/api/products', product)
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
+export const fetchAddNewItemToCart = itemToAdd => {
+  return async dispatch => {
+    try {
+      console.log('THUNK ITEM', itemToAdd)
+      const {data} = await axios.post('/api/cart', itemToAdd)
+      dispatch(addNewItemToCart(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
 //initial state
 const initialState = []
 
 //reducer
-export const cartReducer = (state = initialState, action) => {
+export const cartReducer = (cart = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
-    // case UPDATE_PRODUCT:
-    //   return action.product
+    case ADD_NEW_ITEM_TO_CART: {
+      /// NEED TO FIX THIS!!!
+      return [...cart, action.itemToAdd]
+    }
     default:
-      return state
+      return cart
   }
 }

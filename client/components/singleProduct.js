@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
+import {fetchAddNewItemToCart} from '../store/cart'
 import UpdateProductForm from './updateProductForm'
 
 class SingleProduct extends React.Component {
@@ -12,10 +13,22 @@ class SingleProduct extends React.Component {
     this.handleClick.bind(this)
   }
   handleClick = product => {
-    /// handle click functionality goes here!
-    /// check if user or session has a cart, if not create a cart
-    /// Add Item to cart
-    /// Add a number by the cart to confirm add or have pop-up saying added!
+    let currentProductId = product.id
+    let productsInCart = this.props.cart[0].products
+    if (
+      productsInCart.filter(item => item.id === currentProductId).length > 0
+    ) {
+      console.log('hello')
+      /// NEED TO MODIFY ORDER ITEM FOR PUT REQUEST HERE, AND DISPATCH THUNK
+    } else {
+      let newOrderItem = {
+        quantity: 1,
+        orderId: this.props.cart[0].id,
+        productId: currentProductId
+      }
+      console.log('ITEM SENT FROM COMPONENT', newOrderItem)
+      this.props.addNewItemToCart(newOrderItem)
+    }
   }
 
   componentDidMount() {
@@ -33,7 +46,7 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
-    const cart = this.props.cart
+    const cart = this.props.cart[0]
     console.log('PROPs', this.props)
     console.log('PRODUCT', this.props.product)
     console.log('CART', cart)
@@ -74,7 +87,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getSingleProduct: id => dispatch(fetchSingleProduct(id))
+    getSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addNewItemToCart: newItemToAdd =>
+      dispatch(fetchAddNewItemToCart(newItemToAdd))
   }
 }
 
