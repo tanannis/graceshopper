@@ -8,7 +8,6 @@ const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
 const ADD_NEW_ITEM_TO_CART = 'ADD_NEW_ITEM_TO_CART'
 //const ADD_EXISTING_ITEM_TO_CART = 'ADD_EXISTING_ITEM_TO_CART'
 
-
 //action creators
 export const getCart = cart => {
   return {
@@ -17,17 +16,17 @@ export const getCart = cart => {
   }
 }
 
-
 export const updateItemQuantity = item => {
   return {
     type: UPDATE_ITEM_QUANTITY,
     item
   }
+}
+
 export const addNewItemToCart = itemToAdd => {
   return {
     type: ADD_NEW_ITEM_TO_CART,
     itemToAdd
-
   }
 }
 
@@ -37,13 +36,11 @@ export const fetchCart = () => {
     try {
       const {data} = await axios.get('/api/cart')
       dispatch(getCart(data))
-      console.log('DATA!!', data)
     } catch (error) {
       console.error(error)
     }
   }
 }
-
 
 export const fetchUpdatedItemQuantity = id => {
   return async dispatch => {
@@ -94,18 +91,34 @@ export const fetchAddNewItemToCart = itemToAdd => {
 }
 
 //initial state
-const initialState = []
+const initialState = {}
 
 //reducer
 export const cartReducer = (cart = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
-    case UPDATE_ITEM_QUANTITY:
-      return action.item
+    case UPDATE_ITEM_QUANTITY: {
+      const updatedCart = {...cart}
+      for (let i = 0; i < updatedCart.products.length; i++) {
+        let current = updatedCart.products[i]
+        if (current.id === action.item.productId) {
+          current.orderItem = action.item
+        }
+      }
+      console.log('UPDATED CART ', updatedCart)
+
+      return updatedCart
+    }
     case ADD_NEW_ITEM_TO_CART: {
-      /// NEED TO FIX THIS!!!
-      return [...cart, action.itemToAdd]
+      let newCart = {...cart}
+      newCart.products.push({
+        id: action.itemToAdd.productId,
+        orderItem: action.itemToAdd
+      })
+
+      console.log('NEW CART ', newCart)
+      return newCart
     }
     default:
       return cart

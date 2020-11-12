@@ -14,7 +14,7 @@ class SingleProduct extends React.Component {
   }
   handleClick = product => {
     let currentProductId = product.id
-    let productsInCart = this.props.cart[0].products
+    let productsInCart = this.props.cart.products
     if (
       productsInCart.filter(item => item.id === currentProductId).length > 0
     ) {
@@ -23,7 +23,7 @@ class SingleProduct extends React.Component {
     } else {
       let newOrderItem = {
         quantity: 1,
-        orderId: this.props.cart[0].id,
+        orderId: this.props.cart.id,
         productId: currentProductId
       }
       console.log('ITEM SENT FROM COMPONENT', newOrderItem)
@@ -46,7 +46,7 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
-    const cart = this.props.cart[0]
+    const cart = this.props.cart
     console.log('PROPs', this.props)
     console.log('PRODUCT', this.props.product)
     console.log('CART', cart)
