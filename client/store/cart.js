@@ -1,8 +1,13 @@
 import axios from 'axios'
 
 const GET_CART = 'GET_CART'
+
 const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
 // const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+
+const ADD_NEW_ITEM_TO_CART = 'ADD_NEW_ITEM_TO_CART'
+//const ADD_EXISTING_ITEM_TO_CART = 'ADD_EXISTING_ITEM_TO_CART'
+
 
 //action creators
 export const getCart = cart => {
@@ -12,25 +17,25 @@ export const getCart = cart => {
   }
 }
 
+
 export const updateItemQuantity = item => {
   return {
     type: UPDATE_ITEM_QUANTITY,
     item
   }
-}
+export const addNewItemToCart = itemToAdd => {
+  return {
+    type: ADD_NEW_ITEM_TO_CART,
+    itemToAdd
 
-// export const deleteSingleProduct = id => {
-//   return {
-//     type: DELETE_PRODUCT,
-//     id
-//   }
-// }
+  }
+}
 
 //thunks
 export const fetchCart = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('api/cart')
+      const {data} = await axios.get('/api/cart')
       dispatch(getCart(data))
       console.log('DATA!!', data)
     } catch (error) {
@@ -38,6 +43,7 @@ export const fetchCart = () => {
     }
   }
 }
+
 
 export const fetchUpdatedItemQuantity = id => {
   return async dispatch => {
@@ -75,17 +81,33 @@ export const fetchUpdatedItemQuantity = id => {
 //   }
 // }
 
+export const fetchAddNewItemToCart = itemToAdd => {
+  return async dispatch => {
+    try {
+      console.log('THUNK ITEM', itemToAdd)
+      const {data} = await axios.post('/api/cart', itemToAdd)
+      dispatch(addNewItemToCart(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 //initial state
 const initialState = []
 
 //reducer
-export const cartReducer = (state = initialState, action) => {
+export const cartReducer = (cart = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
     case UPDATE_ITEM_QUANTITY:
       return action.item
+    case ADD_NEW_ITEM_TO_CART: {
+      /// NEED TO FIX THIS!!!
+      return [...cart, action.itemToAdd]
+    }
     default:
-      return state
+      return cart
   }
 }

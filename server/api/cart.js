@@ -34,20 +34,6 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//Add items to cart and modify current cart
-//add to orderItem, must have correct orderId that's related to the cart
-// router.post('/', async (req, res, next) =>{
-//   try {
-//     //req.user to find open order
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
-//steps:
-//add items to cart
-//match item by item id?
-//
 
 //increment quantity of item in cart
 router.put('/:id', async (req, res, next) => {
@@ -70,7 +56,6 @@ router.put('/:id', async (req, res, next) => {
       })
       cartId = cart.id
     }
-
     const orderItemToIncrement = await OrderItem.findOne({
       where: {
         productId: req.params.id,
@@ -82,14 +67,23 @@ router.put('/:id', async (req, res, next) => {
       quantity: orderItemToIncrement.quantity + 1
     })
     res.json(orderItemToIncrement)
+    } catch (error) {
+    next(error)
+  }
+})
 
-    // const orderItemToIncrement = await OrderItem.findOne({where: {
-    //   productId: req.params.id,
-    // }})
-    //   await orderItemToIncrement.update({
-    //     quantity: orderItemToIncrement.quantity + 1,
-    //   })
-    //   res.json(orderItemToIncrement)
+   
+router.post('/', async (req, res, next) => {
+  try {
+    console.log('BODY', req.body)
+    const newItem = await OrderItem.create({
+      quantity: req.body.quantity,
+      orderId: req.body.orderId,
+      productId: req.body.productId
+    })
+    console.log(newItem)
+    res.json(newItem)
+
   } catch (error) {
     next(error)
   }
