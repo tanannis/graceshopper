@@ -4,6 +4,7 @@ const faker = require('faker')
 const db = require('../server/db')
 const {User, Order, OrderItem, Product} = require('../server/db/models')
 
+//we can use magic methods instead below if you want to test stuff
 const usersArray = []
 const productsArray = []
 const ordersArray = [
@@ -24,7 +25,7 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 100; i++) {
     usersArray.push({
       firstName: `${faker.name.firstName()}`,
       lastName: `${faker.name.lastName()}`,
