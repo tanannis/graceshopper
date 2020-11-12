@@ -15,6 +15,7 @@ Order.belongsToMany(Product, {through: OrderItem})
 Product.belongsToMany(Order, {through: OrderItem})
 //Order.hasMany(OrderItem)
 //OrderItem.belongsTo(Order)
+//OrderItem.hasOne(Product)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
