@@ -38,7 +38,6 @@ button {
   color: #fff;
   font-weight: 600;
   border-radius: 5px;
-  width: 80%;
 }
 
 /* allProductsCSS */
@@ -68,6 +67,33 @@ button {
   height: 40px;
 }
 
+/* cart CSS */
+
+.cartContainer {
+  width: 100%;
+  /* background-color: green; */
+}
+
+.productContainer {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin-top: 15px;
+  margin-right: 15px;
+  border: black solid 2px;
+  width: 400px;
+}
+
+.productDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productDetailsChild {
+  padding-left: 30px;
+  border-left: black solid 2px;
+}
 .cart-img {
   max-width: 30px;
+
 }

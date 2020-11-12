@@ -16,7 +16,6 @@ router.get('/', async (req, res, next) => {
       })
       cartId = cart.id
     } else {
-      console.log('SESSION', req.sessionID)
       const [cart] = await Order.findOrCreate({
         where: {
           sessionId: req.sessionID,
@@ -35,6 +34,45 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+
+//increment quantity of item in cart
+router.put('/:id', async (req, res, next) => {
+  try {
+    let cartId
+    if (req.user) {
+      const [cart] = await Order.findOrCreate({
+        where: {
+          userId: req.user.id,
+          status: 'open'
+        }
+      })
+      cartId = cart.id
+    } else {
+      const [cart] = await Order.findOrCreate({
+        where: {
+          sessionId: req.sessionID,
+          status: 'open'
+        }
+      })
+      cartId = cart.id
+    }
+    const orderItemToIncrement = await OrderItem.findOne({
+      where: {
+        productId: req.params.id,
+        orderId: cartId
+      }
+    })
+
+    await orderItemToIncrement.update({
+      quantity: orderItemToIncrement.quantity + 1
+    })
+    res.json(orderItemToIncrement)
+    } catch (error) {
+    next(error)
+  }
+})
+
+   
 router.post('/', async (req, res, next) => {
   try {
     console.log('BODY', req.body)
@@ -45,6 +83,7 @@ router.post('/', async (req, res, next) => {
     })
     console.log(newItem)
     res.json(newItem)
+
   } catch (error) {
     next(error)
   }
