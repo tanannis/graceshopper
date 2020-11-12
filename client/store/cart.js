@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const GET_CART = 'GET_CART'
+const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
 // const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
 //action creators
@@ -11,12 +12,12 @@ export const getCart = cart => {
   }
 }
 
-// export const updateProduct = product => {
-//   return {
-//     type: UPDATE_PRODUCT,
-//     product
-//   }
-// }
+export const updateItemQuantity = item => {
+  return {
+    type: UPDATE_ITEM_QUANTITY,
+    item
+  }
+}
 
 // export const deleteSingleProduct = id => {
 //   return {
@@ -38,16 +39,16 @@ export const fetchCart = () => {
   }
 }
 
-// export const fetchUpdatedProduct = (product) => {
-//   return async (dispatch) => {
-//     try {
-//       const {data} = await axios.put(`/api/products/${product.id}`, product)
-//       dispatch(updateProduct(data))
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
+export const fetchUpdatedItemQuantity = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/cart/${id}`)
+      dispatch(updateItemQuantity(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 
 // export const deleteProduct = (id) => {
 //   return async () => {
@@ -82,8 +83,8 @@ export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
-    // case UPDATE_PRODUCT:
-    //   return action.product
+    case UPDATE_ITEM_QUANTITY:
+      return action.item
     default:
       return state
   }
