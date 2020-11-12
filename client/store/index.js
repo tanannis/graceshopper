@@ -22,5 +22,5 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 
-//QUESTION: need this?
+//README QUESTION: need this?
 export * from './allProducts'
