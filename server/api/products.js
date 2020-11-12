@@ -2,6 +2,9 @@ const router = require('express').Router()
 const {Product} = require('../db/models')
 module.exports = router
 
+// We already have some routes laid out that are great usecases for protecting our data
+// I can see that the PUT route has great logic in there - can we use this other places? (both inside this file and in other files!)
+
 //GET /api/products
 router.get('/', async (req, res, next) => {
   try {

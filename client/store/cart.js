@@ -96,6 +96,9 @@ export const fetchAddNewItemToCart = itemToAdd => {
 //initial state
 const initialState = []
 
+// be careful that the reducer returns a whole new array for the cart not just an individual item
+// follow the path that update takes to the backend - what does this route return?
+
 //reducer
 export const cartReducer = (cart = initialState, action) => {
   switch (action.type) {

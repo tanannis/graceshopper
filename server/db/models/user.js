@@ -3,6 +3,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const _ = require('lodash')
 
+// why leave out the allowNull validations?
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING

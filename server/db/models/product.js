@@ -1,6 +1,8 @@
 const db = require('../db')
 const Sequelize = require('sequelize')
 
+// I like the comment around making the price an Integer!
+// should quantity have a minimum value as well?
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
