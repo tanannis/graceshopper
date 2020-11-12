@@ -46,6 +46,10 @@ router.delete('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
+    if (!req.user || req.user.userType !== 'admin') {
+      res.sendStatus(401)
+      return
+    }
     const productToUpdate = await Product.findByPk(req.params.id)
     if (!productToUpdate) {
       const err = Error('product does not exist')
