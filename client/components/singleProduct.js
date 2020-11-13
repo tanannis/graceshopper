@@ -45,30 +45,27 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
-    const cart = this.props.cart
 
     if (this.state.loading === 'loading') {
       return <div>LOADING!!!</div>
     }
 
     return (
-      <div>
-        <h1>{product.name}</h1>
-        <img src={product.imageUrl} className="product-pic" />
-        <p>Price: ${product.price}</p>
-        <p>Description: {product.description}</p>
-        <button
-          className="btn"
-          type="button"
-          onClick={() => this.handleClick(product)}
-        >
-          Add to Cart!
-        </button>
-        <QuantityDropDown
-          product={this.props.product}
-          bttnText="Add to cart!"
-        />
-        <div>
+      <div className="singleProductContainer">
+        <div className="singleProductBox">
+          <h2>{product.name}</h2>
+          <img src={product.imageUrl} className="product-pic" />
+          <div>Price: ${product.price}</div>
+          <div>Description: {product.description}</div>
+          <div>
+            Quantity:{' '}
+            <QuantityDropDown
+              product={this.props.product}
+              bttnText="Add to cart!"
+            />
+          </div>
+        </div>
+        <div className="updateProductBox">
           <h3>Update Product Info:</h3>
           <UpdateProductForm />
         </div>

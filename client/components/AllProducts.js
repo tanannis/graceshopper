@@ -34,7 +34,6 @@ export class AllProducts extends React.Component {
                     <img className="productImages" src={product.imageUrl} />
                   </a>
                   <p>${product.price}</p>
-                  <p>{product.description}</p>
                   <p>Quantity:</p>
                   <QuantityDropDown product={product} bttnText="Add to cart!" />
                   <button

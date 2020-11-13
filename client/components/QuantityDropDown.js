@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 import {connect} from 'react-redux'
@@ -27,16 +28,14 @@ class QuantityDropDown extends React.Component {
       item => item.id === currentProductId
     )
     if (productToUpdate.length > 0) {
+      let orderToUpdate = productToUpdate[0].orderItem
       if (!this.props.renderLocation) {
-        let orderToUpdate = productToUpdate[0].orderItem
         orderToUpdate.quantity =
           orderToUpdate.quantity + this.state.selectedQuantity
-        this.props.updateQuantity(orderToUpdate)
       } else if (this.props.renderLocation === 'cart') {
-        let orderToUpdate = productToUpdate[0].orderItem
         orderToUpdate.quantity = this.state.selectedQuantity
-        this.props.updateQuantity(orderToUpdate)
       }
+      this.props.updateQuantity(orderToUpdate)
     } else {
       let newOrderItem = {
         quantity: this.state.selectedQuantity,
@@ -44,6 +43,16 @@ class QuantityDropDown extends React.Component {
         productId: currentProductId
       }
       this.props.addNewItemToCart(newOrderItem)
+    }
+  }
+
+  getCurrentProduct() {
+    let allProductsInCart = this.props.cart.products
+    let currentProduct = allProductsInCart.filter(
+      item => item.id === this.props.product.id
+    )
+    if (currentProduct.length > 0) {
+      return currentProduct[0]
     }
   }
 
@@ -58,12 +67,40 @@ class QuantityDropDown extends React.Component {
   }
 
   render() {
-    const product = this.props.product
-    let quantityArray = new Array(product.quantity).fill(null)
-
+    // LOADING CHECK
     if (this.state.loading === 'loading') {
       return <div>LOADING!!!</div>
     }
+
+    // VARIABLES FOR EASE OF USE
+    const product = this.props.product
+
+    // DETERMINING NUM CURRENT ITEM IN CART ALREADY (CONSIDER MAKING RE_USABLE FUNCTION TO USE WITH SUBMIT)
+    let itemsAlreadyInCart = 0
+    let currentProductId = product.id
+    let productsInCart = this.props.cart.products || []
+    let productToUpdate = productsInCart.filter(
+      item => item.id === currentProductId
+    )
+    if (productToUpdate.length > 0) {
+      itemsAlreadyInCart = productToUpdate[0].orderItem.quantity
+    }
+
+    // DETERMINING DROP-DOWN LENGTH
+    let dropDownLength
+    if (!this.props.renderLocation) {
+      dropDownLength = product.quantity - itemsAlreadyInCart || 0
+    } else {
+      dropDownLength = product.quantity || 0
+    }
+    if (dropDownLength === 0 && !this.props.renderLocation) {
+      return <div>All available items in cart!</div>
+    }
+    if (dropDownLength < 0) {
+      dropDownLength = 0
+    }
+
+    let quantityArray = new Array(dropDownLength).fill(null)
 
     return (
       <div>
