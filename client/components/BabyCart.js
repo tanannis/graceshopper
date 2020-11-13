@@ -7,11 +7,6 @@ export class BabyCart extends React.Component {
     await this.props.getCart()
   }
 
-  // async handleClick(id) {
-  //   await this.props.deleteProduct(id)
-  //   this.props.getProducts()
-  // }
-
   render() {
     const cart = this.props.cart || {}
     const products = cart.products
@@ -28,8 +23,8 @@ export class BabyCart extends React.Component {
           <img
             src="https://static.thenounproject.com/png/304392-200.png"
             className="cart-img"
-          />
-          {products && products.length ? numOfProducts : 0}
+          />{' '}
+          {numOfProducts}
         </a>
       </div>
     )
@@ -42,7 +37,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getCart: () => dispatch(fetchCart())
-  // deleteProduct: id => dispatch(deleteProduct(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BabyCart)

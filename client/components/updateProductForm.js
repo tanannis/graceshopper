@@ -32,7 +32,6 @@ class UpdateProductForm extends React.Component {
     if (this.state.description !== '') {
       updatedProduct.description = this.state.description
     }
-    console.log(updatedProduct)
     this.props.updateProductData(updatedProduct)
     this.setState({
       name: '',
@@ -78,7 +77,6 @@ class UpdateProductForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('STATE', state)
   return {
     product: state.singleProduct
   }

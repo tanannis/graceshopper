@@ -48,10 +48,6 @@ export class AllProducts extends React.Component {
             <div>No products available</div>
           )}
         </div>
-        {/* <div className="form">
-          <h2>Add New Campus:</h2>
-          <NewCampusForm />
-        </div> */}
       </div>
     )
   }
