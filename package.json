@@ -47,6 +47,7 @@
     "connect-session-sequelize": "^6.0.0",
     "express": "^4.16.4",
     "express-session": "^1.15.1",
+    "express-validation": "^3.0.6",
     "faker": "^5.1.0",
     "history": "^4.9.0",
     "lodash": "^4.17.20",
