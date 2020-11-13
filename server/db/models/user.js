@@ -6,10 +6,12 @@ const _ = require('lodash')
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
+    defaultValue: '',
     allowNull: false
   },
   lastName: {
     type: Sequelize.STRING,
+    defaultValue: '',
     allowNull: false
   },
   email: {

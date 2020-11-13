@@ -114,7 +114,6 @@ export const cartReducer = (cart = initialState, action) => {
     }
     case DELETE_ITEM_FROM_CART: {
       let updatedCart = {...cart}
-      console.log('CART BEFORE', updatedCart)
       for (let i = 0; i < updatedCart.products.length; i++) {
         let current = updatedCart.products[i]
         if (current.id === action.id) {
