@@ -27,11 +27,16 @@ class QuantityDropDown extends React.Component {
       item => item.id === currentProductId
     )
     if (productToUpdate.length > 0) {
-      let orderToUpdate = productToUpdate[0].orderItem
-      orderToUpdate.quantity =
-        orderToUpdate.quantity + this.state.selectedQuantity
-      console.log(orderToUpdate)
-      this.props.updateQuantity(orderToUpdate)
+      if (!this.props.renderLocation) {
+        let orderToUpdate = productToUpdate[0].orderItem
+        orderToUpdate.quantity =
+          orderToUpdate.quantity + this.state.selectedQuantity
+        this.props.updateQuantity(orderToUpdate)
+      } else if (this.props.renderLocation === 'cart') {
+        let orderToUpdate = productToUpdate[0].orderItem
+        orderToUpdate.quantity = this.state.selectedQuantity
+        this.props.updateQuantity(orderToUpdate)
+      }
     } else {
       let newOrderItem = {
         quantity: this.state.selectedQuantity,
@@ -63,7 +68,6 @@ class QuantityDropDown extends React.Component {
     return (
       <div>
         <div>
-          <label>Quanitity:</label>
           <select
             name="quantity"
             defaultValue="quantity"
@@ -84,7 +88,7 @@ class QuantityDropDown extends React.Component {
           type="submit"
           onClick={() => this.handleSubmit(product)}
         >
-          Add to Cart!
+          {this.props.bttnText}
         </button>
       </div>
     )

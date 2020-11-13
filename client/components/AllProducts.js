@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/allProducts'
 import {deleteProduct} from '../store/singleProduct'
+import QuantityDropDown from './QuantityDropDown'
 
 export class AllProducts extends React.Component {
   // constructor(props) {
@@ -34,6 +35,8 @@ export class AllProducts extends React.Component {
                   </a>
                   <p>${product.price}</p>
                   <p>{product.description}</p>
+                  <p>Quantity:</p>
+                  <QuantityDropDown product={product} bttnText="Add to cart!" />
                   <button
                     type="button"
                     className="removeProductButton"
