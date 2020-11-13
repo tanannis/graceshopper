@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import QuantityDropDown from './QuantityDropDown'
 import {
   fetchCart,
   fetchUpdatedItemQuantity,
@@ -52,14 +53,19 @@ export class Cart extends React.Component {
                       <p>
                         Quantity: {product.orderItem.quantity}{' '}
                         <span>
-                          <button
+                          {/* <button
                             type="button"
                             onClick={() =>
                               this.handleUpdateQuantity(product.id)
                             }
                           >
                             +
-                          </button>
+                          </button> */}
+                          <QuantityDropDown
+                            product={product}
+                            bttnText="Update Quantity"
+                            renderLocation="cart"
+                          />
                         </span>
                       </p>
                       <button
