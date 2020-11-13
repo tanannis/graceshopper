@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const {Product, Order, OrderItem} = require('../db/models')
 module.exports = router
-const session = require('express-session')
 
 //GET /api/cart
 router.get('/', async (req, res, next) => {

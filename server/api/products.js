@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
+const permit = require('./authorization')
 module.exports = router
 
 //GET /api/products
@@ -24,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 // /post /api/products
-router.post('/', async (req, res, next) => {
+router.post('/', permit(['admin']), async (req, res, next) => {
   try {
     const newProduct = await Product.create(req.body)
     res.json(newProduct)
@@ -34,7 +35,7 @@ router.post('/', async (req, res, next) => {
 })
 
 //delete /api/products/:productid
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', permit(['admin']), async (req, res, next) => {
   try {
     const id = req.params.id
     await Product.destroy({where: {id}})
@@ -44,12 +45,8 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', permit(['admin']), async (req, res, next) => {
   try {
-    if (!req.user || req.user.userType !== 'admin') {
-      res.sendStatus(401)
-      return
-    }
     const productToUpdate = await Product.findByPk(req.params.id)
     if (!productToUpdate) {
       const err = Error('product does not exist')
