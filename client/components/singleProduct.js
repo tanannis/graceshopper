@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
-import {fetchAddNewItemToCart} from '../store/cart'
+import {fetchAddNewItemToCart, fetchUpdatedItemQuantity} from '../store/cart'
 import UpdateProductForm from './updateProductForm'
+import QuantityDropDown from './QuantityDropDown'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -18,15 +19,13 @@ class SingleProduct extends React.Component {
     if (
       productsInCart.filter(item => item.id === currentProductId).length > 0
     ) {
-      console.log('hello')
-      /// NEED TO MODIFY ORDER ITEM FOR PUT REQUEST HERE, AND DISPATCH THUNK
+      this.props.updateQuantity(currentProductId)
     } else {
       let newOrderItem = {
         quantity: 1,
         orderId: this.props.cart.id,
         productId: currentProductId
       }
-      console.log('ITEM SENT FROM COMPONENT', newOrderItem)
       this.props.addNewItemToCart(newOrderItem)
     }
   }
@@ -47,9 +46,6 @@ class SingleProduct extends React.Component {
   render() {
     const product = this.props.product
     const cart = this.props.cart
-    console.log('PROPs', this.props)
-    console.log('PRODUCT', this.props.product)
-    console.log('CART', cart)
 
     if (this.state.loading === 'loading') {
       return <div>LOADING!!!</div>
@@ -68,6 +64,10 @@ class SingleProduct extends React.Component {
         >
           Add to Cart!
         </button>
+        <QuantityDropDown
+          product={this.props.product}
+          bttnText="Add to cart!"
+        />
         <div>
           <h3>Update Product Info:</h3>
           <UpdateProductForm />
@@ -78,7 +78,6 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('STATE', state)
   return {
     product: state.singleProduct,
     cart: state.cart
@@ -89,7 +88,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
     addNewItemToCart: newItemToAdd =>
-      dispatch(fetchAddNewItemToCart(newItemToAdd))
+      dispatch(fetchAddNewItemToCart(newItemToAdd)),
+    updateQuantity: id => dispatch(fetchUpdatedItemQuantity(id))
   }
 }
 

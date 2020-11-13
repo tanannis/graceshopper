@@ -1,12 +1,13 @@
+/* eslint-disable complexity */
 import axios from 'axios'
 
 const GET_CART = 'GET_CART'
 
 const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
-// const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
 const ADD_NEW_ITEM_TO_CART = 'ADD_NEW_ITEM_TO_CART'
-//const ADD_EXISTING_ITEM_TO_CART = 'ADD_EXISTING_ITEM_TO_CART'
+
+const DELETE_ITEM_FROM_CART = 'DELETE_ITEM_FROM_CART'
 
 //action creators
 export const getCart = cart => {
@@ -30,6 +31,13 @@ export const addNewItemToCart = itemToAdd => {
   }
 }
 
+export const deleteItemFromCart = id => {
+  return {
+    type: DELETE_ITEM_FROM_CART,
+    id
+  }
+}
+
 //thunks
 export const fetchCart = () => {
   return async dispatch => {
@@ -42,10 +50,13 @@ export const fetchCart = () => {
   }
 }
 
-export const fetchUpdatedItemQuantity = id => {
+export const fetchUpdatedItemQuantity = updatedOrderItem => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/cart/${id}`)
+      const {data} = await axios.put(
+        `/api/cart/${updatedOrderItem.productId}`,
+        updatedOrderItem
+      )
       dispatch(updateItemQuantity(data))
     } catch (error) {
       console.error(error)
@@ -53,39 +64,24 @@ export const fetchUpdatedItemQuantity = id => {
   }
 }
 
-// export const deleteProduct = (id) => {
-//   return async () => {
-//     try {
-//       await axios.delete(`/api/products/${id}`)
-//       // dispatch(deleteSingleProduct(id))
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
-
-// export const addProduct = (product) => {
-//   // if (!campus.imageUrl) {
-//   //   campus.imageUrl =
-//   //     "https://media.istockphoto.com/vectors/vector-school-building-vector-id186655818?k=6&m=186655818&s=612x612&w=0&h=4LAjSdZViLIyvYNILscpMjbkd2e6_2mPa3yf-cStV3Q=";
-//   // }
-//   return async () => {
-//     try {
-//       await axios.post('/api/products', product)
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
+export const fetchDeleteItemFromCart = id => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/cart/${id}`)
+      dispatch(deleteItemFromCart(id))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 
 export const fetchAddNewItemToCart = itemToAdd => {
   return async dispatch => {
     try {
-      console.log('THUNK ITEM', itemToAdd)
       const {data} = await axios.post('/api/cart', itemToAdd)
       dispatch(addNewItemToCart(data))
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }
@@ -106,8 +102,6 @@ export const cartReducer = (cart = initialState, action) => {
           current.orderItem = action.item
         }
       }
-      console.log('UPDATED CART ', updatedCart)
-
       return updatedCart
     }
     case ADD_NEW_ITEM_TO_CART: {
@@ -116,9 +110,18 @@ export const cartReducer = (cart = initialState, action) => {
         id: action.itemToAdd.productId,
         orderItem: action.itemToAdd
       })
-
-      console.log('NEW CART ', newCart)
       return newCart
+    }
+    case DELETE_ITEM_FROM_CART: {
+      let updatedCart = {...cart}
+      console.log('CART BEFORE', updatedCart)
+      for (let i = 0; i < updatedCart.products.length; i++) {
+        let current = updatedCart.products[i]
+        if (current.id === action.id) {
+          updatedCart.products.splice(i, 1)
+        }
+      }
+      return updatedCart
     }
     default:
       return cart

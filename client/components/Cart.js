@@ -1,20 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, fetchUpdatedItemQuantity} from '../store/cart'
+import {
+  fetchCart,
+  fetchUpdatedItemQuantity,
+  fetchDeleteItemFromCart
+} from '../store/cart'
 
 export class Cart extends React.Component {
   async componentDidMount() {
     await this.props.getCart()
   }
 
-  // async handleClick(id) {
-  //   await this.props.deleteProduct(id)
-  //   this.props.getProducts()
-  // }
+  async handleDeleteItemFromCart(id) {
+    await this.props.deleteItemFromCart(id)
+  }
 
   async handleUpdateQuantity(id) {
     await this.props.updateQuantity(id)
-    this.props.getCart()
   }
 
   render() {
@@ -60,7 +62,14 @@ export class Cart extends React.Component {
                           </button>
                         </span>
                       </p>
-                      <button type="button">Remove from Cart</button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          this.handleDeleteItemFromCart(product.id)
+                        }
+                      >
+                        Remove from Cart
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -83,8 +92,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getCart: () => dispatch(fetchCart()),
-  updateQuantity: id => dispatch(fetchUpdatedItemQuantity(id))
-  // deleteProduct: id => dispatch(deleteProduct(id))
+  updateQuantity: id => dispatch(fetchUpdatedItemQuantity(id)),
+  deleteItemFromCart: id => dispatch(fetchDeleteItemFromCart(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

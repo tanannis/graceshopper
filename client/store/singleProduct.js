@@ -32,7 +32,6 @@ export const fetchSingleProduct = id => {
     try {
       const {data} = await axios.get(`/api/products/${id}`)
       dispatch(pickProduct(data))
-      // console.log('DATA!!', data)
     } catch (error) {
       console.error(error)
     }
