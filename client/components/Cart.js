@@ -22,6 +22,7 @@ export class Cart extends React.Component {
 
   render() {
     const cart = this.props.cart || {}
+    console.log(cart)
     const products = cart.products
     let numOfProducts = 0
     let total = 0
@@ -53,14 +54,6 @@ export class Cart extends React.Component {
                       <p>
                         Quantity: {product.orderItem.quantity}{' '}
                         <span>
-                          {/* <button
-                            type="button"
-                            onClick={() =>
-                              this.handleUpdateQuantity(product.id)
-                            }
-                          >
-                            +
-                          </button> */}
                           <QuantityDropDown
                             product={product}
                             bttnText="Update Quantity"
@@ -83,7 +76,9 @@ export class Cart extends React.Component {
             })}
           </div>
           <h3>Subotal: ${total}</h3>
-          <button type="button">Check Out</button>
+          <a href="/checkout">
+            <button type="button">Check Out</button>
+          </a>
         </div>
       )
     } else {
