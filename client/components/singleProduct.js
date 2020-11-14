@@ -62,7 +62,7 @@ class SingleProduct extends React.Component {
             <Col sm={8}>
               <div className="productName">
                 <h3>{product.name}</h3>
-              </div>
+             </div>
               <Table>
                 <tbody>
                   <tr>
