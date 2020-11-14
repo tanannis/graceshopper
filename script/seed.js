@@ -6,7 +6,8 @@ const usersArray = [
     firstName: 'Jack',
     lastName: 'Bens',
     email: 'jb@email.com',
-    password: 'ilovecake123'
+    password: 'ilovecake123',
+    userType: 'admin'
   },
   {
     firstName: 'Miki',
