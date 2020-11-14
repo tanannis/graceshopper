@@ -119,7 +119,7 @@ class QuantityDropDown extends React.Component {
             ))}
           </select>
         </div>
-        <div clasName="buttonBox">
+        <div className="buttonBox">
           <Button
             id="cartButton"
             variant="dark"
