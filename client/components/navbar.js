@@ -24,6 +24,13 @@ const NavbarComponent = ({handleClick, isLoggedIn, isAdmin}) => (
         ) : (
           ''
         )}
+        {isAdmin ? (
+          <Nav.Link as={NavLink} to="/users">
+            All Users
+          </Nav.Link>
+        ) : (
+          ''
+        )}
         {isLoggedIn ? (
           <Nav.Link href="#" onClick={handleClick}>
             Logout

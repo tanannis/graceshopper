@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllUsers} from '../store/allUsers'
+import {Table} from 'react-bootstrap'
 
 class AllUsers extends React.Component {
   async componentDidMount() {
@@ -13,14 +14,30 @@ class AllUsers extends React.Component {
     return (
       <div className="usersBody">
         <div className="allUsersContainer">
+          <Table striped bordered hover size="small">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+          </Table>
           {users && users.length ? (
             users.map(user => {
               return (
                 <div className="userBox" key={user.id}>
-                  <li>
-                    id: {user.id}, first name: {user.firstName}, last name:{' '}
-                    {user.lastName}, email: {user.email}
-                  </li>
+                  <Table striped bordered hover size="sm">
+                    <tbody>
+                      <tr>
+                        <td>{user.id}</td>
+                        <td>{user.firstName}</td>
+                        <td>{user.lastName}</td>
+                        <td>{user.email}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
                 </div>
               )
             })
