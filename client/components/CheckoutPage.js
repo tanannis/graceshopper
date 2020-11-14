@@ -100,66 +100,12 @@ class CheckoutPage extends React.Component {
             </ul>
             Total Price: ${(total / 100).toFixed(2)}
           </div>
-          {/* <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              name="firstName"
-              value={this.state.firstName}
-              onChange={this.handleChange}
-              placeholder="First Name"
-            />
-            <input
-              type="text"
-              name="lastName"
-              value={this.state.lastName}
-              onChange={this.handleChange}
-              placeholder="Last Name"
-            />
-
-            <input
-              type="text"
-              name="addressLineOne"
-              value={this.state.addressLineOne}
-              onChange={this.handleChange}
-              placeholder="Address"
-            />
-
-            <input
-              type="text"
-              name="city"
-              value={this.state.city}
-              onChange={this.handleChange}
-              placeholder="City"
-            />
-
-            <input
-              type="text"
-              name="state"
-              value={this.state.state}
-              onChange={this.handleChange}
-              placeholder="State"
-            />
-
-            <input
-              type="text"
-              name="zipCode"
-              value={this.state.zipCode}
-              onChange={this.handleChange}
-              placeholder="Zipcode"
-            /> */}
-          {/* <button type="submit">Place Order</button> */}
-          {/* </form> */}
-          {/* <ElementsConsumer>
-      {({elements, stripe}) => (
-        <StripeForm elements={elements} stripe={stripe} />
-      )}
-    </ElementsConsumer> */}
           <StripeCheckout
             stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
             token={this.handleToken}
             billingAddress
             shippingAddress
-            amount={total * 100}
+            amount={total}
           />
         </>
       )
