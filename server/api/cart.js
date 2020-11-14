@@ -33,8 +33,49 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//increment quantity of item in cart
-router.put('/:id', async (req, res, next) => {
+//checkout close order
+router.put('/checkout', async (req, res, next) => {
+  try {
+    let cartId
+    if (req.user) {
+      const cart = await Order.findOne({
+        where: {
+          userId: req.user.id,
+          status: 'open'
+        }
+      })
+      cartId = cart.id
+    } else {
+      const cart = await Order.findOne({
+        where: {
+          sessionId: req.sessionID,
+          status: 'open'
+        }
+      })
+      cartId = cart.id
+    }
+    const orderToUpdate = await Order.findOne({
+      where: {
+        id: cartId
+      }
+    })
+    await orderToUpdate.update({
+      status: 'closed',
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.addressLineOne,
+      city: req.body.city,
+      state: req.body.state,
+      zipCode: req.body.zipCode
+    })
+    res.json(orderToUpdate)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// increment quantity of item in cart
+router.put('/item/:id', async (req, res, next) => {
   try {
     let updatedOrderItem = req.body
     let cartId
@@ -83,7 +124,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/item/:id', async (req, res, next) => {
   try {
     let cartId
     if (req.user) {

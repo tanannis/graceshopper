@@ -1,12 +1,64 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {
-  fetchCart,
-  fetchUpdatedItemQuantity,
-  fetchDeleteItemFromCart
-} from '../store/cart'
+import {fetchCart, fetchCheckoutCart} from '../store/cart'
+import Confirmation from './Confirmation'
 
 class CheckoutPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstName: '',
+      lastName: '',
+      addressLineOne: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      orderProcessed: false
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
+  async handleSubmit(evt) {
+    evt.preventDefault()
+    let cart = {...this.props.cart}
+    if (this.state.firstName !== '') {
+      cart.firstName = this.state.firstName
+    }
+    if (this.state.lastName !== '') {
+      cart.lastName = this.state.lastName
+    }
+    if (this.state.addressLineOne !== '') {
+      cart.addressLineOne = this.state.addressLineOne
+    }
+    if (this.state.city !== '') {
+      cart.city = this.state.city
+    }
+    if (this.state.state !== '') {
+      cart.state = this.state.state
+    }
+    if (this.state.zipCode !== '') {
+      cart.zipCode = this.state.zipCode
+    }
+    console.log(cart)
+    await this.props.checkoutCart(cart)
+    this.setState({
+      firstName: '',
+      lastName: '',
+      addressLineOne: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      orderProcessed: true
+    })
+  }
+
   async componentDidMount() {
     await this.props.getCart()
   }
@@ -20,7 +72,6 @@ class CheckoutPage extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const cart = this.props.cart || {}
     const products = cart.products
     let total = 0
@@ -29,7 +80,7 @@ class CheckoutPage extends React.Component {
         return accum + current.price * current.orderItem.quantity
       }, 0)
     }
-    if (products && products.length) {
+    if (!this.state.orderProcessed && products && products.length) {
       return (
         <>
           <h2>Checkout page!</h2>
@@ -49,53 +100,58 @@ class CheckoutPage extends React.Component {
             Total Price: ${total}
           </div>
           <form onSubmit={this.handleSubmit}>
-            <p>
-              <input
-                type="text"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Name"
-              />
+            <input
+              type="text"
+              name="firstName"
+              value={this.state.firstName}
+              onChange={this.handleChange}
+              placeholder="First Name"
+            />
+            <input
+              type="text"
+              name="lastName"
+              value={this.state.lastName}
+              onChange={this.handleChange}
+              placeholder="Last Name"
+            />
 
-              <input
-                type="text"
-                name="price"
-                value={this.state.price}
-                onChange={this.handleChange}
-                placeholder="Price"
-              />
+            <input
+              type="text"
+              name="addressLineOne"
+              value={this.state.addressLineOne}
+              onChange={this.handleChange}
+              placeholder="Address"
+            />
 
-              <input
-                type="text"
-                name="description"
-                value={this.state.description}
-                onChange={this.handleChange}
-                placeholder="Description"
-              />
+            <input
+              type="text"
+              name="city"
+              value={this.state.city}
+              onChange={this.handleChange}
+              placeholder="City"
+            />
 
-              <input
-                type="text"
-                name="quantity"
-                value={this.state.quantity}
-                onChange={this.handleChange}
-                placeholder="Quantity in Stock"
-              />
+            <input
+              type="text"
+              name="state"
+              value={this.state.state}
+              onChange={this.handleChange}
+              placeholder="State"
+            />
 
-              <input
-                type="text"
-                name="imageUrl"
-                value={this.state.imageUrl}
-                onChange={this.handleChange}
-                placeholder="Image URL"
-              />
-              <button type="submit">Place Order</button>
-            </p>
+            <input
+              type="text"
+              name="zipCode"
+              value={this.state.zipCode}
+              onChange={this.handleChange}
+              placeholder="Zipcode"
+            />
+            <button type="submit">Place Order</button>
           </form>
         </>
       )
     } else {
-      return <p>Oops! No products in cart yet! Add some items and come back!</p>
+      return <Confirmation />
     }
   }
 }
@@ -106,8 +162,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getCart: () => dispatch(fetchCart()),
-  updateQuantity: id => dispatch(fetchUpdatedItemQuantity(id)),
-  deleteItemFromCart: id => dispatch(fetchDeleteItemFromCart(id))
+  checkoutCart: cart => dispatch(fetchCheckoutCart(cart))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage)
