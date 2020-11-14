@@ -1,5 +1,6 @@
-body {
-  font-family: sans-serif;
+body,
+html body {
+  font-family: 'Noto Sans', sans-serif;
   background: #fcf7ff;
 }
 
@@ -9,16 +10,6 @@ a {
 
 label {
   display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
 }
 
 img {
@@ -35,7 +26,7 @@ img {
 button {
   padding: 10px;
   border: none;
-  background-color: #3f51b5;
+  background-color: #7b5b83;
   color: #fff;
   font-weight: 600;
   border-radius: 5px;
@@ -61,12 +52,13 @@ button {
   padding-bottom: 20px;
   margin: 15px;
   width: 300px;
-  border: black solid 2px;
+  background-color: #ece1f2;
+  border-radius: 10px;
 }
 
-.productName {
+/* .productName {
   height: 40px;
-}
+} */
 
 /* cart CSS */
 
@@ -94,9 +86,6 @@ button {
   padding-left: 30px;
   border-left: black solid 2px;
 }
-.cart-img {
-  max-width: 30px;
-}
 
 .singleProductContainer {
   padding-left: 20px;
@@ -122,4 +111,51 @@ button {
   margin-top: 15px;
   margin-right: 15px;
   border: black solid 2px;
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+}
+
+.homePageContent {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.homePage {
+  padding: 20px;
+}
+
+.homePageContent h3 {
+  font-style: italic;
+}
+
+#homePageImg {
+  min-width: 400px;
+}
+
+.cart-nav-item {
+  margin-left: auto;
+}
+
+.navbar {
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+}
+
+.productForm {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.authForm {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin: 0 auto;
 }

@@ -1,37 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import BabyCart from './BabyCart'
+import {Nav, Navbar} from 'react-bootstrap'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const NavbarComponent = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>BAKERY</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
+    <Navbar bg="dark" variant="dark">
+      <Navbar.Brand>GRACE BAKES</Navbar.Brand>
+      <Nav>
+        <Nav.Link as={NavLink} to="/home">
+          Home
+        </Nav.Link>
+        <Nav.Link as={NavLink} to="/products">
+          All Goodies
+        </Nav.Link>
+        <Nav.Link as={NavLink} to="/addproduct">
+          Add Product
+        </Nav.Link>
+        {isLoggedIn ? (
+          <Nav.Link href="#" onClick={handleClick}>
             Logout
-          </a>
-          <Link to="/products">All Goodies</Link>
-          <Link to="/addproduct">Add Product</Link>
-          <BabyCart />
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/products">All Goodies</Link>
-          <Link to="/addproduct">Add Product</Link>
-          <BabyCart />
-        </div>
-      )}
-    </nav>
-    <hr />
+          </Nav.Link>
+        ) : (
+          <>
+            {' '}
+            <Nav.Link as={NavLink} to="/login">
+              Login
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/signup">
+              Sign Up
+            </Nav.Link>{' '}
+          </>
+        )}
+      </Nav>
+      <Nav className="cart-nav-item">
+        <BabyCart />
+      </Nav>
+    </Navbar>
   </div>
 )
 
@@ -52,12 +60,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(NavbarComponent)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
+NavbarComponent.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
