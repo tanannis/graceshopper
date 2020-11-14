@@ -3,6 +3,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAddNewItemToCart, fetchUpdatedItemQuantity} from '../store/cart'
+import Button from 'react-bootstrap/Button'
 
 class QuantityDropDown extends React.Component {
   constructor() {
@@ -118,13 +119,9 @@ class QuantityDropDown extends React.Component {
             ))}
           </select>
         </div>
-        <button
-          className="btn"
-          type="submit"
-          onClick={() => this.handleSubmit(product)}
-        >
+        <Button type="submit" onClick={() => this.handleSubmit(product)}>
           {this.props.bttnText}
-        </button>
+        </Button>
       </div>
     )
   }
