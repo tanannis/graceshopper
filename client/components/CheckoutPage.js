@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart, fetchCheckoutCart} from '../store/cart'
 import Confirmation from './Confirmation'
+import StripeCheckout from 'react-stripe-checkout'
+import axios from 'axios'
 
 class CheckoutPage extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class CheckoutPage extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleToken = this.handleToken.bind(this)
   }
 
   handleChange(evt) {
@@ -63,12 +66,11 @@ class CheckoutPage extends React.Component {
     await this.props.getCart()
   }
 
-  async handleDeleteItemFromCart(id) {
-    await this.props.deleteItemFromCart(id)
-  }
-
-  async handleUpdateQuantity(id) {
-    await this.props.updateQuantity(id)
+  async handleToken(token) {
+    let cart = {...this.props.cart}
+    token.cart = cart
+    // console.log({token})
+    await this.props.checkoutCart(token)
   }
 
   render() {
@@ -98,7 +100,7 @@ class CheckoutPage extends React.Component {
             </ul>
             Total Price: ${(total / 100).toFixed(2)}
           </div>
-          <form onSubmit={this.handleSubmit}>
+          {/* <form onSubmit={this.handleSubmit}>
             <input
               type="text"
               name="firstName"
@@ -144,9 +146,21 @@ class CheckoutPage extends React.Component {
               value={this.state.zipCode}
               onChange={this.handleChange}
               placeholder="Zipcode"
-            />
-            <button type="submit">Place Order</button>
-          </form>
+            /> */}
+          {/* <button type="submit">Place Order</button> */}
+          {/* </form> */}
+          {/* <ElementsConsumer>
+      {({elements, stripe}) => (
+        <StripeForm elements={elements} stripe={stripe} />
+      )}
+    </ElementsConsumer> */}
+          <StripeCheckout
+            stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+            token={this.handleToken}
+            billingAddress
+            shippingAddress
+            amount={total * 100}
+          />
         </>
       )
     } else {
