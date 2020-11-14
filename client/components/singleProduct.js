@@ -75,7 +75,6 @@ class SingleProduct extends React.Component {
         </Container>
         {isAdmin ? (
           <Container className="updateProductBox">
-            <h3>Update Product Info:</h3>
             <UpdateProductForm />
           </Container>
         ) : (

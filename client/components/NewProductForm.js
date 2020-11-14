@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addProduct} from '../store/singleProduct'
-import {Form, Col} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 
 class NewProductForm extends React.Component {
   constructor(props) {
