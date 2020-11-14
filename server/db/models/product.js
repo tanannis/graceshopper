@@ -11,9 +11,14 @@ const Product = db.define('product', {
     allowNull: false
   },
   price: {
-    type: Sequelize.FLOAT,
-    //type: Sequelize.INTEGER divide by 100 on the front end
+    type: Sequelize.INTEGER,
     allowNull: false
+  },
+  priceDisplay: {
+    type: Sequelize.STRING,
+    get() {
+      return `$${(this.price / 100).toFixed(2)}`
+    }
   },
   imageUrl: {
     type: Sequelize.STRING,

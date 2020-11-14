@@ -61,7 +61,7 @@ class SingleProduct extends React.Component {
             </Col>
             <Col>
               <h2>{product.name}</h2>
-              <div>Price: ${product.price}</div>
+              <div>Price: {product.priceDisplay}</div>
               <div>Description: {product.description}</div>
               <div>
                 Quantity:{' '}

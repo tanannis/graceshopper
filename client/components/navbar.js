@@ -6,7 +6,7 @@ import {logout} from '../store'
 import BabyCart from './BabyCart'
 import {Nav, Navbar} from 'react-bootstrap'
 
-const NavbarComponent = ({handleClick, isLoggedIn}) => (
+const NavbarComponent = ({handleClick, isLoggedIn, isAdmin}) => (
   <div>
     <Navbar bg="dark" variant="dark">
       <Navbar.Brand>GRACE BAKES</Navbar.Brand>
@@ -17,9 +17,13 @@ const NavbarComponent = ({handleClick, isLoggedIn}) => (
         <Nav.Link as={NavLink} to="/products">
           All Goodies
         </Nav.Link>
-        <Nav.Link as={NavLink} to="/addproduct">
-          Add Product
-        </Nav.Link>
+        {isAdmin ? (
+          <Nav.Link as={NavLink} to="/addproduct">
+            Add Product
+          </Nav.Link>
+        ) : (
+          ''
+        )}
         {isLoggedIn ? (
           <Nav.Link href="#" onClick={handleClick}>
             Logout
@@ -48,7 +52,8 @@ const NavbarComponent = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.userType === 'admin'
   }
 }
 
