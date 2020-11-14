@@ -14,19 +14,21 @@ class AllUsers extends React.Component {
     return (
       <div className="usersBody">
         <div className="allUsersContainer">
+          <Table striped bordered hover size="small">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+          </Table>
           {users && users.length ? (
             users.map(user => {
               return (
                 <div className="userBox" key={user.id}>
                   <Table striped bordered hover size="sm">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                      </tr>
-                    </thead>
                     <tbody>
                       <tr>
                         <td>{user.id}</td>
