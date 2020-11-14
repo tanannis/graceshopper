@@ -43,7 +43,7 @@ const productsArray = [
     description:
       'Our signature handmade napoleon made of very thin and flaky puff pastry cake layers and a smooth, rich and luscious pastry cream in between the layers, topped with fresh fruit.',
     price: 8,
-    quantity: 10
+    quantity: 100
   },
   {
     name: 'Chocolate Dream Donuts',

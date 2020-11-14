@@ -17,10 +17,10 @@ class AllUsers extends React.Component {
             users.map(user => {
               return (
                 <div className="userBox" key={user.id}>
-                  <h2 className="userName">
-                    <a href={`/users/${user.id}`}>{user.name}</a>
-                  </h2>
-                  <a href={`/users/${user.id}`} />
+                  <li>
+                    id: {user.id}, first name: {user.firstName}, last name:{' '}
+                    {user.lastName}, email: {user.email}
+                  </li>
                 </div>
               )
             })

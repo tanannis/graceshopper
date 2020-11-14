@@ -8,6 +8,7 @@ import singleProduct from './components/singleProduct'
 import NewProductForm from './components/NewProductForm'
 import Cart from './components/Cart'
 import CheckoutPage from './components/CheckoutPage'
+import AllUsers from './components/AllUsers'
 
 /**
  * COMPONENT
@@ -25,7 +26,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-
+        <Route exact path="/users" component={AllUsers} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={singleProduct} />
         <Route exact path="/addproduct" component={NewProductForm} />

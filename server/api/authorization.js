@@ -10,7 +10,7 @@
 //   }
 // }
 
-function permit(...permittedUserType) {
+function permit() {
   // return a middleware
   return (request, response, next) => {
     const {user} = request
