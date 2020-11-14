@@ -34,8 +34,9 @@ export const UserHome = props => {
           www.flaticon.com
         </a>
       </div>
-    <div>
-      <AllUsers />
+      <div>
+        <AllUsers />
+      </div>
     </div>
   )
 }

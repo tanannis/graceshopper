@@ -73,7 +73,6 @@ class SingleProduct extends React.Component {
           </Row>
         </Container>
         <Container className="updateProductBox">
-          <h3>Update Product Info:</h3>
           <UpdateProductForm />
         </Container>
       </Container>
