@@ -4,7 +4,7 @@ import {fetchSingleProduct} from '../store/singleProduct'
 import {fetchAddNewItemToCart, fetchUpdatedItemQuantity} from '../store/cart'
 import UpdateProductForm from './updateProductForm'
 import QuantityDropDown from './QuantityDropDown'
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col, Table} from 'react-bootstrap'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -56,20 +56,34 @@ class SingleProduct extends React.Component {
       <Container className="singleProductContainer">
         <Container className="singleProductBox">
           <Row>
-            <Col>
+            <Col sm={4}>
               <img src={product.imageUrl} className="product-pic" />
             </Col>
-            <Col>
-              <h2>{product.name}</h2>
-              <div>Price: ${product.price}</div>
-              <div>Description: {product.description}</div>
-              <div>
-                Quantity:{' '}
-                <QuantityDropDown
-                  product={this.props.product}
-                  bttnText="Add to cart!"
-                />{' '}
+            <Col sm={8}>
+              <div className="productName">
+                <h3>{product.name}</h3>
               </div>
+              <Table>
+                <tbody>
+                  <tr>
+                    <td className="tableHeader">Price:</td>
+                    <td>${product.price}</td>
+                  </tr>
+                  <tr>
+                    <td className="tableHeader">Description:</td>
+                    <td>{product.description}</td>
+                  </tr>
+                  <tr>
+                    <td className="tableHeader">Quantity: </td>
+                    <td>
+                      <QuantityDropDown
+                        product={this.props.product}
+                        bttnText="Add to cart!"
+                      />{' '}
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
             </Col>
           </Row>
         </Container>
