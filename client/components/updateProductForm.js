@@ -44,32 +44,30 @@ class UpdateProductForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <p>
-            <input
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              placeholder="Name"
-            />
+          <input
+            type="text"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+            placeholder="Name"
+          />
 
-            <input
-              type="text"
-              name="price"
-              value={this.state.price}
-              onChange={this.handleChange}
-              placeholder="price"
-            />
+          <input
+            type="text"
+            name="price"
+            value={this.state.price}
+            onChange={this.handleChange}
+            placeholder="price"
+          />
 
-            <input
-              type="text"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-              placeholder="Description"
-            />
-            <button type="submit">Submit Update</button>
-          </p>
+          <input
+            type="text"
+            name="description"
+            value={this.state.description}
+            onChange={this.handleChange}
+            placeholder="Description"
+          />
+          <button type="submit">Submit Update</button>
         </form>
       </div>
     )
