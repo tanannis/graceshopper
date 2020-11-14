@@ -1,6 +1,11 @@
 const router = require('express').Router()
 const {Product, Order, OrderItem} = require('../db/models')
 module.exports = router
+if (process.env.NODE_ENV !== 'production') require('../../secrets')
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
+const stripe = require('stripe')(stripeSecretKey)
+const uuid = require('uuid/v4')
 
 //GET /api/cart
 router.get('/', async (req, res, next) => {
@@ -33,9 +38,10 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//checkout close order
+// checkout close order
 router.put('/checkout', async (req, res, next) => {
   try {
+    console.log('Request:', req.body)
     let cartId
     if (req.user) {
       const cart = await Order.findOne({
@@ -61,12 +67,12 @@ router.put('/checkout', async (req, res, next) => {
     })
     await orderToUpdate.update({
       status: 'closed',
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      address: req.body.addressLineOne,
-      city: req.body.city,
-      state: req.body.state,
-      zipCode: req.body.zipCode
+      name: req.body.card.name,
+      addressLine1: req.body.card.address_line1,
+      addressLine2: req.body.card.address_line2,
+      city: req.body.card.address_city,
+      state: req.body.card.address_state,
+      zipCode: req.body.card.address_zip
     })
     res.json(orderToUpdate)
   } catch (error) {

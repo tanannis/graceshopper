@@ -42,7 +42,7 @@ const productsArray = [
       'https://i.ibb.co/ygz1yX6/The-Best-Napoleon-Cake-is-made-with-thin-puff-pastry-layers-then-sandwiched-with-rich-and-buttery-cu.jpg',
     description:
       'Our signature handmade napoleon made of very thin and flaky puff pastry cake layers and a smooth, rich and luscious pastry cream in between the layers, topped with fresh fruit.',
-    price: 8,
+    price: 800,
     quantity: 100
   },
   {
@@ -51,7 +51,7 @@ const productsArray = [
       'https://i.ibb.co/yQ3XTrZ/gluten-free-vegan-baked-chocolate-donuts.jpg',
     description:
       'Our famous chocolate donuts covered with silky melted chocolate glaze, paradise in every bite...',
-    price: 3,
+    price: 300,
     quantity: 10
   },
   {
@@ -59,7 +59,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/Bc13Pnz/poached-pear-puff-pastry-1.jpg',
     description:
       'Limited edition: pear puff made of very thin and flaky puff pastry cake layers and a smooth, rich and luscious pear pastry cream in between the layers.',
-    price: 6,
+    price: 600,
     quantity: 10
   },
   {
@@ -67,7 +67,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/5KvXzfn/Italian-croissants-15-500x500.jpg',
     description:
       'Our best seller: this handmade cloud-like puff pastry is buttery and flaky. It really is one of the most decadent things you can eat.',
-    price: 3,
+    price: 300,
     quantity: 10
   },
   {
@@ -76,7 +76,7 @@ const productsArray = [
       'https://i.ibb.co/RgZSP1W/cream-puff-recipe-chocolate-glaze-1-S-12750.jpg',
     description:
       'Try our new fluffy cream puff today! It is made of very thin and flaky puff pastry layers filled with rich vanilla cream inside.',
-    price: 6,
+    price: 600,
     quantity: 10
   },
   {
@@ -84,7 +84,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/gVRWrbY/Fruit-tart-2019-feature.jpg',
     description:
       'This fruit tart has a sweet pastry crust, smooth cream filling and topped with organic fresh fruit. It is a healthy and elegant dessert for tea time!',
-    price: 6,
+    price: 600,
     quantity: 10
   },
   {
@@ -92,7 +92,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/5sWXFvq/Classic-Cheesecake-Recipe-1.jpg',
     description:
       'Creamy and delicious with a touch of lime juice, the New York Cheese Cake is one of our best sellers!',
-    price: 7,
+    price: 700,
     quantity: 10
   },
   {
@@ -100,7 +100,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/JW1r37d/mini-cheesecakes-21.jpg',
     description:
       'Topped with fresh organic strawberry, this creamy cheese cake is our new signature for an elegant experience.',
-    price: 6,
+    price: 600,
     quantity: 10
   },
   {
@@ -108,7 +108,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/vcf2NJs/Puff-Pastry-Pockets1.jpg',
     description:
       'A classic Asian pastry with curry filling inside, its crust is made of very thin and flaky puff pastry cake layers that will give you an unique experience. ',
-    price: 6,
+    price: 600,
     quantity: 10
   },
   {
@@ -116,7 +116,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/vQbh93b/spinach-cheese-puffs-4.jpg',
     description:
       'Our new favorite: made with heavy cream and organic spinach, this quiche is a classic French pastry.',
-    price: 5,
+    price: 500,
     quantity: 10
   },
   {
@@ -124,7 +124,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/fkXB6FV/Hokkaido-Cheese-Tart-2.jpg',
     description:
       'Our new favorite: made with organic eggs, its crust is made of flaky puff pastry cake layers, this tart is a classic Asian pastry.',
-    price: 5,
+    price: 500,
     quantity: 10
   },
   {
@@ -132,7 +132,7 @@ const productsArray = [
     imageUrl: 'https://i.ibb.co/PGVJkcq/Easy-Chocolate-Chip-Scones.jpg',
     description:
       'Our signature scone: it has a “short” crumbly texture that is a must for afternoon tea!',
-    price: 5,
+    price: 500,
     quantity: 10
   }
 ]

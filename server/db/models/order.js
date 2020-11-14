@@ -8,13 +8,13 @@ const Order = db.define('order', {
   },
   sessionId: {type: Sequelize.STRING},
   userId: {type: Sequelize.INTEGER},
-  firstName: {
+  name: {
     type: Sequelize.STRING
   },
-  lastName: {
+  addressLine1: {
     type: Sequelize.STRING
   },
-  address: {
+  addressLine2: {
     type: Sequelize.STRING
   },
   city: {

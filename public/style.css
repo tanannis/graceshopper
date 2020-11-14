@@ -32,6 +32,16 @@ button {
   border-radius: 5px;
 }
 
+/* TO OVER-RIDE BOOTSTRAP COLOR */
+#cartButton {
+  background-color: #7b5b83;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
+}
+
 /* allProductsCSS */
 
 .allProductsContainer {
@@ -45,7 +55,7 @@ button {
   justify-content: space-around;
 }
 
-.productBox {
+/* .productBox {
   text-align: center;
   padding-left: 20px;
   padding-right: 20px;
@@ -54,7 +64,7 @@ button {
   width: 300px;
   background-color: #ece1f2;
   border-radius: 10px;
-}
+} */
 
 /* .productName {
   height: 40px;
@@ -76,10 +86,28 @@ button {
   border: black solid 2px;
   width: 400px;
 }
+.productImage {
+  width: 18em;
+  height: 18em;
+  background-size: cover;
+}
+
+#quantityRow {
+  display: flex;
+}
 
 .productDetails {
   display: flex;
   justify-content: space-between;
+}
+
+.card {
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 0.15em 0.75em rgba(0, 0, 0, 0.4);
 }
 
 .productDetailsChild {
@@ -88,20 +116,17 @@ button {
 }
 
 .singleProductContainer {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  margin-top: 15px;
-  margin-right: 15px;
+  padding: 20px;
+  margin: 15px;
 }
 
 .singleProductBox {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  margin-top: 15px;
-  margin-right: 15px;
-  border: black solid 2px;
+  padding: 30px;
+  margin: 10px;
+  background-color: #ece1f2;
+  border-radius: 10px;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .updateProductBox {
@@ -110,22 +135,20 @@ button {
   padding-bottom: 20px;
   margin-top: 15px;
   margin-right: 15px;
-  border: black solid 2px;
 }
+
+/* HOME PAGE STYLING */
 
 .homePage {
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 
 .homePageContent {
   display: flex;
   justify-content: center;
   padding: 10px;
-}
-
-.homePage {
-  padding: 20px;
 }
 
 .homePageContent h3 {
@@ -135,6 +158,8 @@ button {
 #homePageImg {
   min-width: 400px;
 }
+
+/* NAV BAR STYLING */
 
 .cart-nav-item {
   margin-left: auto;
@@ -158,4 +183,13 @@ button {
   flex-direction: column;
   max-width: 50%;
   margin: 0 auto;
+}
+
+.dropDownRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tableHeader {
+  font-weight: bold;
 }
