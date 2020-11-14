@@ -6,7 +6,8 @@ const usersArray = [
     firstName: 'Jack',
     lastName: 'Bens',
     email: 'jb@email.com',
-    password: 'ilovecake123'
+    password: 'ilovecake123',
+    userType: 'admin'
   },
   {
     firstName: 'Miki',
@@ -42,7 +43,7 @@ const productsArray = [
     description:
       'Our signature handmade napoleon made of very thin and flaky puff pastry cake layers and a smooth, rich and luscious pastry cream in between the layers, topped with fresh fruit.',
     price: 8,
-    quantity: 10
+    quantity: 100
   },
   {
     name: 'Chocolate Dream Donuts',

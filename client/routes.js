@@ -8,6 +8,8 @@ import singleProduct from './components/singleProduct'
 import NewProductForm from './components/NewProductForm'
 import Cart from './components/Cart'
 import CheckoutPage from './components/CheckoutPage'
+import AllUsers from './components/AllUsers'
+import Confirmation from './components/Confirmation'
 
 /**
  * COMPONENT
@@ -24,11 +26,13 @@ class Routes extends Component {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route exact path="/users" component={AllUsers} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={singleProduct} />
         <Route exact path="/addproduct" component={NewProductForm} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={CheckoutPage} />
+        <Route exact path="/order-confirmation" component={Confirmation} />
         <Route path="/home" component={UserHome} />
         <Route component={UserHome} />
       </Switch>

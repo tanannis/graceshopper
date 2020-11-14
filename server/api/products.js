@@ -34,7 +34,7 @@ router.post('/', permit(['admin']), async (req, res, next) => {
   }
 })
 
-//delete /api/products/:productid
+// delete /api/products/:productid
 router.delete('/:id', permit(['admin']), async (req, res, next) => {
   try {
     const id = req.params.id

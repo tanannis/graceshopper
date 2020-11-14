@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import AllUsers from './AllUsers'
 
 /**
  * COMPONENT
@@ -33,6 +34,8 @@ export const UserHome = props => {
           www.flaticon.com
         </a>
       </div>
+    <div>
+      <AllUsers />
     </div>
   )
 }

@@ -9,7 +9,7 @@ class QuantityDropDown extends React.Component {
     super()
     this.state = {
       loading: 'loading',
-      selectedQuantity: 0
+      selectedQuantity: 1
     }
     this.handleSubmit.bind(this)
     this.changeSelected.bind(this)
@@ -110,9 +110,7 @@ class QuantityDropDown extends React.Component {
             defaultValue="quantity"
             onChange={this.changeSelected}
           >
-            <option value="" disabled>
-              {' '}
-            </option>
+            <option value="" disabled />
             {quantityArray.map((element, index) => (
               <option key={index} value={index + 1}>
                 {index + 1}
