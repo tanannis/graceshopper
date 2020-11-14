@@ -104,7 +104,7 @@ class QuantityDropDown extends React.Component {
     let quantityArray = new Array(dropDownLength).fill(null)
 
     return (
-      <div>
+      <div className="dropDownRow">
         <div>
           <select
             name="quantity"
@@ -119,9 +119,16 @@ class QuantityDropDown extends React.Component {
             ))}
           </select>
         </div>
-        <Button type="submit" onClick={() => this.handleSubmit(product)}>
-          {this.props.bttnText}
-        </Button>
+        <div clasName="buttonBox">
+          <Button
+            id="cartButton"
+            variant="dark"
+            type="submit"
+            onClick={() => this.handleSubmit(product)}
+          >
+            {this.props.bttnText}
+          </Button>
+        </div>
       </div>
     )
   }
