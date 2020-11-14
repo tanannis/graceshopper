@@ -67,7 +67,7 @@ class SingleProduct extends React.Component {
                 <tbody>
                   <tr>
                     <td className="tableHeader">Price:</td>
-                    <td>${product.price}</td>
+                    <td>{product.priceDisplay}</td>
                   </tr>
                   <tr>
                     <td className="tableHeader">Description:</td>
