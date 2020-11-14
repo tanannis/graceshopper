@@ -4,6 +4,7 @@ import {fetchSingleProduct} from '../store/singleProduct'
 import {fetchAddNewItemToCart, fetchUpdatedItemQuantity} from '../store/cart'
 import UpdateProductForm from './updateProductForm'
 import QuantityDropDown from './QuantityDropDown'
+import {Container, Row, Col} from 'react-bootstrap'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -45,31 +46,41 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
+    const isAdmin = this.props.isAdmin
 
     if (this.state.loading === 'loading') {
       return <div>LOADING!!!</div>
     }
 
     return (
-      <div className="singleProductContainer">
-        <div className="singleProductBox">
-          <h2>{product.name}</h2>
-          <img src={product.imageUrl} className="product-pic" />
-          <div>Price: ${product.price}</div>
-          <div>Description: {product.description}</div>
-          <div>
-            Quantity:{' '}
-            <QuantityDropDown
-              product={this.props.product}
-              bttnText="Add to cart!"
-            />
-          </div>
-        </div>
-        <div className="updateProductBox">
-          <h3>Update Product Info:</h3>
-          <UpdateProductForm />
-        </div>
-      </div>
+      <Container className="singleProductContainer">
+        <Container className="singleProductBox">
+          <Row>
+            <Col>
+              <img src={product.imageUrl} className="product-pic" />
+            </Col>
+            <Col>
+              <h2>{product.name}</h2>
+              <div>Price: {product.priceDisplay}</div>
+              <div>Description: {product.description}</div>
+              <div>
+                Quantity:{' '}
+                <QuantityDropDown
+                  product={this.props.product}
+                  bttnText="Add to cart!"
+                />{' '}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+        {isAdmin ? (
+          <Container className="updateProductBox">
+            <UpdateProductForm />
+          </Container>
+        ) : (
+          ''
+        )}
+      </Container>
     )
   }
 }
@@ -77,7 +88,8 @@ class SingleProduct extends React.Component {
 const mapStateToProps = state => {
   return {
     product: state.singleProduct,
-    cart: state.cart
+    cart: state.cart,
+    isAdmin: state.user.userType === 'admin'
   }
 }
 

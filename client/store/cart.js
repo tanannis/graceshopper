@@ -9,6 +9,8 @@ const ADD_NEW_ITEM_TO_CART = 'ADD_NEW_ITEM_TO_CART'
 
 const DELETE_ITEM_FROM_CART = 'DELETE_ITEM_FROM_CART'
 
+const CHECKOUT_CART = 'CHECKOUT_CART'
+
 //action creators
 export const getCart = cart => {
   return {
@@ -38,6 +40,13 @@ export const deleteItemFromCart = id => {
   }
 }
 
+export const checkoutCart = cart => {
+  return {
+    type: CHECKOUT_CART,
+    cart
+  }
+}
+
 //thunks
 export const fetchCart = () => {
   return async dispatch => {
@@ -54,7 +63,7 @@ export const fetchUpdatedItemQuantity = updatedOrderItem => {
   return async dispatch => {
     try {
       const {data} = await axios.put(
-        `/api/cart/${updatedOrderItem.productId}`,
+        `/api/cart/item/${updatedOrderItem.productId}`,
         updatedOrderItem
       )
       dispatch(updateItemQuantity(data))
@@ -67,7 +76,7 @@ export const fetchUpdatedItemQuantity = updatedOrderItem => {
 export const fetchDeleteItemFromCart = id => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/cart/${id}`)
+      await axios.delete(`/api/cart/item/${id}`)
       dispatch(deleteItemFromCart(id))
     } catch (error) {
       console.error(error)
@@ -82,6 +91,17 @@ export const fetchAddNewItemToCart = itemToAdd => {
       dispatch(addNewItemToCart(data))
     } catch (err) {
       console.error(err)
+    }
+  }
+}
+
+export const fetchCheckoutCart = cartToCheckout => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/cart/checkout`, cartToCheckout)
+      dispatch(checkoutCart(data))
+    } catch (error) {
+      console.error(error)
     }
   }
 }
@@ -121,6 +141,10 @@ export const cartReducer = (cart = initialState, action) => {
         }
       }
       return updatedCart
+    }
+    case CHECKOUT_CART: {
+      const newCart = {}
+      return newCart
     }
     default:
       return cart

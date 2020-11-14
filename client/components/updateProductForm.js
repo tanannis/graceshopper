@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUpdatedProduct} from '../store/singleProduct'
+import {Form} from 'react-bootstrap'
 
 class UpdateProductForm extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class UpdateProductForm extends React.Component {
       updatedProduct.name = this.state.name
     }
     if (this.state.price !== '') {
-      updatedProduct.price = parseFloat(this.state.price)
+      updatedProduct.price = parseFloat(this.state.price) * 100
     }
     if (this.state.description !== '') {
       updatedProduct.description = this.state.description
@@ -43,34 +44,37 @@ class UpdateProductForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <input
+        <Form onSubmit={this.handleSubmit} className="productForm">
+          <h4>Update Product Details:</h4>
+          <Form.Group controlId="formProductName">
+            <Form.Control
               type="text"
               name="name"
               value={this.state.name}
               onChange={this.handleChange}
-              placeholder="Name"
+              placeholder="Product Name"
             />
-
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
               type="text"
               name="price"
               value={this.state.price}
               onChange={this.handleChange}
-              placeholder="price"
+              placeholder="Price"
             />
-
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
               type="text"
               name="description"
               value={this.state.description}
               onChange={this.handleChange}
               placeholder="Description"
             />
-            <button type="submit">Submit Update</button>
-          </p>
-        </form>
+          </Form.Group>
+          <button type="submit">Submit Update</button>
+        </Form>
       </div>
     )
   }

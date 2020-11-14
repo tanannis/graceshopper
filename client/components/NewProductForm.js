@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addProduct} from '../store/singleProduct'
+import {Form} from 'react-bootstrap'
 
 class NewProductForm extends React.Component {
   constructor(props) {
@@ -23,7 +24,10 @@ class NewProductForm extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addProduct(this.state)
+    this.props.addProduct({
+      ...this.state,
+      price: Number(this.state.price) * 100
+    })
     this.setState({
       name: '',
       price: '',
@@ -36,50 +40,55 @@ class NewProductForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <input
+        <Form onSubmit={this.handleSubmit} className="productForm">
+          <h4>New Item Details:</h4>
+          <Form.Group controlId="formProductName">
+            <Form.Control
               type="text"
               name="name"
               value={this.state.name}
               onChange={this.handleChange}
               placeholder="Product Name"
             />
-
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
               type="text"
               name="price"
               value={this.state.price}
               onChange={this.handleChange}
               placeholder="Price"
             />
-
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
               type="text"
               name="description"
               value={this.state.description}
               onChange={this.handleChange}
               placeholder="Description"
             />
-
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
               type="text"
               name="quantity"
               value={this.state.quantity}
               onChange={this.handleChange}
               placeholder="Quantity in Stock"
             />
-
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
               type="text"
               name="imageUrl"
               value={this.state.imageUrl}
               onChange={this.handleChange}
               placeholder="Image URL"
             />
-            <button type="submit">Submit Product</button>
-          </p>
-        </form>
+          </Form.Group>
+          <button type="submit">Submit Product</button>
+        </Form>
       </div>
     )
   }
