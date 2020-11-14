@@ -92,14 +92,13 @@ class CheckoutPage extends React.Component {
               {products.map(product => {
                 return (
                   <li key={product.id}>
-                    {product.name} ({product.orderItem.quantity}) - ${
-                      product.price
-                    }
+                    {product.name} ({product.orderItem.quantity}) &mdash;{' '}
+                    {product.priceDisplay}
                   </li>
                 )
               })}
             </ul>
-            Total Price: ${total}
+            Total Price: ${(total / 100).toFixed(2)}
           </div>
           {/* <form onSubmit={this.handleSubmit}>
             <input

@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import AllUsers from './AllUsers'
+import AllProducts from './AllProducts'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {firstName} = props
+  const {firstName, isAdmin} = props
 
   return (
     <div className="homePage">
@@ -34,9 +35,6 @@ export const UserHome = props => {
           www.flaticon.com
         </a>
       </div>
-      <div>
-        <AllUsers />
-      </div>
     </div>
   )
 }
@@ -47,7 +45,8 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     firstName: state.user.firstName,
-    email: state.user.email
+    email: state.user.email,
+    isAdmin: state.user.userType === 'admin'
   }
 }
 

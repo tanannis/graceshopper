@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchProducts} from '../store/allProducts'
 import {deleteProduct} from '../store/singleProduct'
 import QuantityDropDown from './QuantityDropDown'
+import {Card, ListGroup, ListGroupItem} from 'react-bootstrap'
 
 export class AllProducts extends React.Component {
   // constructor(props) {
@@ -19,6 +20,7 @@ export class AllProducts extends React.Component {
 
   render() {
     const products = this.props.products || []
+    const isAdmin = this.props.isAdmin
 
     return (
       <div className="productsBody">
@@ -26,24 +28,43 @@ export class AllProducts extends React.Component {
           {products && products.length ? (
             products.map(product => {
               return (
-                <div className="productBox" key={product.id}>
-                  <h2 className="productName">
-                    <a href={`/products/${product.id}`}>{product.name}</a>
-                  </h2>
-                  <a href={`/products/${product.id}`}>
-                    <img className="productImages" src={product.imageUrl} />
-                  </a>
-                  <p>${product.price}</p>
-                  <p>Quantity:</p>
-                  <QuantityDropDown product={product} bttnText="Add to cart!" />
-                  <button
-                    type="button"
-                    className="removeProductButton"
-                    onClick={() => this.handleClick(product.id)}
-                  >
-                    Remove Product
-                  </button>
-                </div>
+                <Card style={{width: '18rem', margin: '1em'}} key={product.id}>
+                  <Card.Header
+                    as="a"
+                    href={`/products/${product.id}`}
+                    role="img"
+                    alt={product.name}
+                    className="productImage"
+                    style={{backgroundImage: `url(${product.imageUrl})`}}
+                  />
+                  <Card.Body>
+                    <Card.Title>{product.name}</Card.Title>
+                  </Card.Body>
+                  <ListGroup className="list-group-flush">
+                    <ListGroupItem>Price: ${product.price}</ListGroupItem>
+                    <ListGroupItem id="quantityRow">
+                      <div>Quantity:</div>
+                      <QuantityDropDown
+                        product={product}
+                        bttnText="Add to cart!"
+                      />
+                    </ListGroupItem>
+                  </ListGroup>
+                  <Card.Body>
+                    <Card.Link href={`/products/${product.id}`}>
+                      View Details
+                    </Card.Link>
+                    {isAdmin && (
+                      <button
+                        type="button"
+                        className="removeProductButton"
+                        onClick={() => this.handleClick(product.id)}
+                      >
+                        Remove Product
+                      </button>
+                    )}
+                  </Card.Body>
+                </Card>
               )
             })
           ) : (
@@ -56,7 +77,8 @@ export class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products
+  products: state.products,
+  isAdmin: state.user.userType === 'admin'
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addProduct} from '../store/singleProduct'
-import {Form, Col} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 
 class NewProductForm extends React.Component {
   constructor(props) {
@@ -24,7 +24,10 @@ class NewProductForm extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addProduct(this.state)
+    this.props.addProduct({
+      ...this.state,
+      price: Number(this.state.price) * 100
+    })
     this.setState({
       name: '',
       price: '',

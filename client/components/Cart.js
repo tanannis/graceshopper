@@ -50,7 +50,7 @@ export class Cart extends React.Component {
                   <div className="productDetails">
                     <img src={product.imageUrl} />
                     <div className="productDetailsChild">
-                      <p>Price: ${product.price}</p>
+                      <p>Price: {product.priceDisplay}</p>
                       <p>
                         Quantity: {product.orderItem.quantity}{' '}
                         <span>
@@ -75,7 +75,7 @@ export class Cart extends React.Component {
               )
             })}
           </div>
-          <h3>Subotal: ${total}</h3>
+          <h3>Subotal: ${(total / 100).toFixed(2)}</h3>
           <a href="/checkout">
             <button type="button">Check Out</button>
           </a>
