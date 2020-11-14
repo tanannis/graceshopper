@@ -7,7 +7,7 @@ import AllUsers from './AllUsers'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {firstName} = props
+  const {firstName, isAdmin} = props
 
   return (
     <div className="homePage">
@@ -34,9 +34,7 @@ export const UserHome = props => {
           www.flaticon.com
         </a>
       </div>
-      <div>
-        <AllUsers />
-      </div>
+      <div>{isAdmin ? <AllUsers /> : ''}</div>
     </div>
   )
 }
@@ -47,7 +45,8 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     firstName: state.user.firstName,
-    email: state.user.email
+    email: state.user.email,
+    isAdmin: state.user.userType === 'admin'
   }
 }
 

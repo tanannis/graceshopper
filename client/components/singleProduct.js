@@ -46,6 +46,7 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
+    const isAdmin = this.props.isAdmin
 
     if (this.state.loading === 'loading') {
       return <div>LOADING!!!</div>
@@ -72,9 +73,13 @@ class SingleProduct extends React.Component {
             </Col>
           </Row>
         </Container>
-        <Container className="updateProductBox">
-          <UpdateProductForm />
-        </Container>
+        {isAdmin ? (
+          <Container className="updateProductBox">
+            <UpdateProductForm />
+          </Container>
+        ) : (
+          ''
+        )}
       </Container>
     )
   }
@@ -83,7 +88,8 @@ class SingleProduct extends React.Component {
 const mapStateToProps = state => {
   return {
     product: state.singleProduct,
-    cart: state.cart
+    cart: state.cart,
+    isAdmin: state.user.userType === 'admin'
   }
 }
 

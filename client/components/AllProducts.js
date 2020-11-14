@@ -19,6 +19,7 @@ export class AllProducts extends React.Component {
 
   render() {
     const products = this.props.products || []
+    const isAdmin = this.props.isAdmin
 
     return (
       <div className="productsBody">
@@ -36,13 +37,17 @@ export class AllProducts extends React.Component {
                   <p>${product.price}</p>
                   <p>Quantity:</p>
                   <QuantityDropDown product={product} bttnText="Add to cart!" />
-                  <button
-                    type="button"
-                    className="removeProductButton"
-                    onClick={() => this.handleClick(product.id)}
-                  >
-                    Remove Product
-                  </button>
+                  {isAdmin ? (
+                    <button
+                      type="button"
+                      className="removeProductButton"
+                      onClick={() => this.handleClick(product.id)}
+                    >
+                      Remove Product
+                    </button>
+                  ) : (
+                    ''
+                  )}
                 </div>
               )
             })
@@ -56,7 +61,8 @@ export class AllProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products
+  products: state.products,
+  isAdmin: state.user.userType === 'admin'
 })
 
 const mapDispatchToProps = dispatch => ({
