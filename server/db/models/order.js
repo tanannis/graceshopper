@@ -7,7 +7,25 @@ const Order = db.define('order', {
     defaultValue: 'open'
   },
   sessionId: {type: Sequelize.STRING},
-  userId: {type: Sequelize.INTEGER}
+  userId: {type: Sequelize.INTEGER},
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  address: {
+    type: Sequelize.STRING
+  },
+  city: {
+    type: Sequelize.STRING
+  },
+  state: {
+    type: Sequelize.STRING
+  },
+  zipCode: {
+    type: Sequelize.STRING
+  }
 })
 
 module.exports = Order
