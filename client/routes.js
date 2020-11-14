@@ -8,6 +8,7 @@ import singleProduct from './components/singleProduct'
 import NewProductForm from './components/NewProductForm'
 import Cart from './components/Cart'
 import CheckoutPage from './components/CheckoutPage'
+import Confirmation from './components/Confirmation'
 
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ class Routes extends Component {
         <Route exact path="/addproduct" component={NewProductForm} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={CheckoutPage} />
+        <Route exact path="/order-confirmation" component={Confirmation} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
