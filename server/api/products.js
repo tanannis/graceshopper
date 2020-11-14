@@ -7,7 +7,15 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      attributes: ['id', 'name', 'description', 'price', 'imageUrl', 'quantity']
+      attributes: [
+        'id',
+        'name',
+        'description',
+        'price',
+        'imageUrl',
+        'quantity',
+        'priceDisplay'
+      ]
     })
     res.json(products)
   } catch (err) {

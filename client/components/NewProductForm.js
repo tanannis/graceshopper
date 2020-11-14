@@ -24,7 +24,10 @@ class NewProductForm extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addProduct(this.state)
+    this.props.addProduct({
+      ...this.state,
+      price: Number(this.state.price) * 100
+    })
     this.setState({
       name: '',
       price: '',

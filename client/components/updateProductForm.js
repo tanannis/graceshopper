@@ -28,7 +28,7 @@ class UpdateProductForm extends React.Component {
       updatedProduct.name = this.state.name
     }
     if (this.state.price !== '') {
-      updatedProduct.price = parseFloat(this.state.price)
+      updatedProduct.price = parseFloat(this.state.price) * 100
     }
     if (this.state.description !== '') {
       updatedProduct.description = this.state.description
