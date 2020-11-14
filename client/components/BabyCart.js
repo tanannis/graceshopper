@@ -1,6 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
+import {Cart2} from 'react-bootstrap-icons'
+import {NavLink} from 'react-router-dom'
+import {Nav} from 'react-bootstrap'
 
 export class BabyCart extends React.Component {
   async componentDidMount() {
@@ -18,15 +21,9 @@ export class BabyCart extends React.Component {
     }
 
     return (
-      <div>
-        <a href="/cart">
-          <img
-            src="https://static.thenounproject.com/png/304392-200.png"
-            className="cart-img"
-          />{' '}
-          {numOfProducts}
-        </a>
-      </div>
+      <Nav.Link as={NavLink} to="/cart">
+        <Cart2 /> {numOfProducts}
+      </Nav.Link>
     )
   }
 }
