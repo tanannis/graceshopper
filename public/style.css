@@ -8,6 +8,14 @@ a {
   text-decoration: none;
 }
 
+.link {
+  color: #7b5b83;
+}
+
+.link:hover {
+  color: darkgray;
+}
+
 label {
   display: block;
 }
@@ -24,7 +32,6 @@ img {
 /* Riley took button styling from JPFP - but we can always change it! */
 
 button {
-  padding: 10px;
   border: none;
   background-color: #7b5b83;
   color: #fff;
@@ -35,6 +42,17 @@ button {
 /* TO OVER-RIDE BOOTSTRAP COLOR */
 #cartButton {
   background-color: #7b5b83;
+}
+
+.cart {
+  margin: 20px;
+}
+.cartRow {
+  margin: 20px;
+}
+
+.cartContainer {
+  margin: 20px;
 }
 
 .buttonBox {
@@ -70,14 +88,11 @@ button {
   height: 40px;
 } */
 
-/* cart CSS */
-
 .cartContainer {
   width: 100%;
-  /* background-color: green; */
 }
 
-.productContainer {
+/* .productContainer {
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
@@ -85,10 +100,17 @@ button {
   margin-right: 15px;
   border: black solid 2px;
   width: 400px;
-}
+} */
+
 .productImage {
   width: 18em;
   height: 18em;
+  background-size: cover;
+}
+
+.cartProductImage {
+  width: 15em;
+  height: 15em;
   background-size: cover;
 }
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Row, Col, Table} from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 import QuantityDropDown from './QuantityDropDown'
 import {
   fetchCart,
@@ -22,7 +24,6 @@ export class Cart extends React.Component {
 
   render() {
     const cart = this.props.cart || {}
-    console.log(cart)
     const products = cart.products
     let numOfProducts = 0
     let total = 0
@@ -37,48 +38,66 @@ export class Cart extends React.Component {
 
     if (products && products.length) {
       return (
-        <div>
+        <div className="cart">
           <div>
-            You have {numOfProducts} items in your cart. Check out soon before
-            they sell out!
+            <h4>
+              You have {numOfProducts} items in your cart. Check out soon before
+              they sell out!
+            </h4>
           </div>
           <div className="cartContainer">
             {products.map(product => {
               return (
-                <div className="productContainer" key={product.id}>
-                  <h3>{product.name}</h3>
-                  <div className="productDetails">
-                    <img src={product.imageUrl} />
-                    <div className="productDetailsChild">
-                      <p>Price: {product.priceDisplay}</p>
-                      <p>
-                        Quantity: {product.orderItem.quantity}{' '}
-                        <span>
-                          <QuantityDropDown
-                            product={product}
-                            bttnText="Update Quantity"
-                            renderLocation="cart"
-                          />
-                        </span>
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          this.handleDeleteItemFromCart(product.id)
-                        }
-                      >
-                        Remove from Cart
-                      </button>
+                <Row key={product.id} className="cartRow">
+                  <Col sm={30}>
+                    <img src={product.imageUrl} className="cartProductImage" />
+                  </Col>
+                  <Col sm={80}>
+                    <div className="productName">
+                      <h3>{product.name}</h3>
                     </div>
-                  </div>
-                </div>
+                    <Table>
+                      <tbody>
+                        <tr>
+                          <td className="tableHeader">Price:</td>
+                          <td>{product.priceDisplay}</td>
+                        </tr>
+                        <tr>
+                          <td className="tableHeader">Quantity: </td>
+                          <td>
+                            Quantity: {product.orderItem.quantity}
+                            <QuantityDropDown
+                              product={product}
+                              bttnText="Update Quantity"
+                              renderLocation="cart"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="tableHeader">Remove from Cart: </td>
+                          <td>
+                            <Button
+                              id="cartButton"
+                              variant="dark"
+                              onClick={() =>
+                                this.handleDeleteItemFromCart(product.id)
+                              }
+                            >
+                              Remove Item
+                            </Button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+                </Row>
               )
             })}
           </div>
-          <h3>Subotal: ${(total / 100).toFixed(2)}</h3>
-          <a href="/checkout">
-            <button type="button">Check Out</button>
-          </a>
+          <h4>Subotal: ${(total / 100).toFixed(2)}</h4>
+          <Button href="/checkout" id="cartButton" variant="dark">
+            Check Out
+          </Button>
         </div>
       )
     } else {

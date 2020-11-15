@@ -28,9 +28,6 @@ if (process.env.NODE_ENV === 'test') {
  */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY
-const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
-
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
 
@@ -42,9 +39,6 @@ passport.deserializeUser(async (id, done) => {
     done(err)
   }
 })
-
-// console.log("SECRET: ", stripeSecretKey)
-// console.log("PUBLIC: ", stripePublicKey)
 
 const createApp = () => {
   // logging middleware

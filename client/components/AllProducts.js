@@ -4,11 +4,9 @@ import {fetchProducts} from '../store/allProducts'
 import {deleteProduct} from '../store/singleProduct'
 import QuantityDropDown from './QuantityDropDown'
 import {Card, ListGroup, ListGroupItem} from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 
 export class AllProducts extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
   async componentDidMount() {
     await this.props.getProducts()
   }
@@ -38,7 +36,9 @@ export class AllProducts extends React.Component {
                     style={{backgroundImage: `url(${product.imageUrl})`}}
                   />
                   <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
+                    <a href={`/products/${product.id}`} className="link">
+                      <Card.Title>{product.name}</Card.Title>
+                    </a>
                   </Card.Body>
                   <ListGroup className="list-group-flush">
                     <ListGroupItem>Price: {product.priceDisplay}</ListGroupItem>
@@ -51,17 +51,22 @@ export class AllProducts extends React.Component {
                     </ListGroupItem>
                   </ListGroup>
                   <Card.Body>
-                    <Card.Link href={`/products/${product.id}`}>
+                    <Card.Link
+                      href={`/products/${product.id}`}
+                      className="link"
+                    >
                       View Details
                     </Card.Link>
+                    <br />
                     {isAdmin && (
-                      <button
-                        type="button"
+                      <Button
+                        id="cartButton"
+                        variant="dark"
                         className="removeProductButton"
                         onClick={() => this.handleClick(product.id)}
                       >
                         Remove Product
-                      </button>
+                      </Button>
                     )}
                   </Card.Body>
                 </Card>
