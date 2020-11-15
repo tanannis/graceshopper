@@ -36,7 +36,6 @@ router.get('/', async (req, res, next) => {
 // checkout close order
 router.put('/checkout', async (req, res, next) => {
   try {
-    console.log('Request:', req.body)
     let cartId
     if (req.user) {
       const cart = await Order.findOne({
