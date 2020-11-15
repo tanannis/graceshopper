@@ -11,36 +11,37 @@ function isAdmin(req, res, next) {
   }
 }
 
-// function isUser(req, res, mext) {
-//   if (req.params.id === req.user.id || req.user.userType)
-//   return next ()
-
-// }
-
-// router.get('/', isAdmin, async (req, res, next) => {
-//   try {
-//     const users = await User.findAll({
-//       // explicitly select only the id and email fields - even though
-//       // users' passwords are encrypted, it won't help if we just
-//       // send everything to anyone who asks!
-//       attributes: ['firstName', 'lastName', 'id', 'email']
-//     })
-//     res.json(users)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
 router.get('/', permit(['admin']), async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['firstName', 'lastName', 'id', 'email']
+      attributes: ['firstName', 'lastName', 'id', 'email', 'userType']
     })
     res.json(users)
   } catch (err) {
     next(err)
+  }
+})
+//add back in -> permit(['admin'])
+
+router.put('/changeUserType/:id', async (req, res, next) => {
+  try {
+    const userToUpdate = await User.findByPk(req.params.id)
+    if (!userToUpdate) {
+      const err = Error('user does not exist')
+      err.status = 409
+      throw err
+    }
+    if (userToUpdate && userToUpdate.userType === 'user') {
+      await userToUpdate.update({
+        userType: 'admin'
+      })
+    } else if (userToUpdate && userToUpdate.userType === 'admin') {
+      await userToUpdate.update({
+        userType: 'user'
+      })
+    }
+    res.json(userToUpdate)
+  } catch (error) {
+    next(error)
   }
 })

@@ -49,7 +49,6 @@ class CheckoutPage extends React.Component {
     if (this.state.zipCode !== '') {
       cart.zipCode = this.state.zipCode
     }
-    console.log(cart)
     await this.props.checkoutCart(cart)
     this.setState({
       firstName: '',
@@ -69,7 +68,6 @@ class CheckoutPage extends React.Component {
   async handleToken(token) {
     let cart = {...this.props.cart}
     token.cart = cart
-    // console.log({token})
     await this.props.checkoutCart(token)
   }
 

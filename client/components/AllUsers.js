@@ -1,11 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllUsers} from '../store/allUsers'
+import {fetchAllUsers, fetchUpdatedUser} from '../store/allUsers'
 import {Table} from 'react-bootstrap'
 
 class AllUsers extends React.Component {
   async componentDidMount() {
     await this.props.getAllUsers()
+  }
+
+  async handleUpdateUser(user) {
+    await this.props.updateUserType(user)
   }
 
   render() {
@@ -21,29 +25,33 @@ class AllUsers extends React.Component {
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Type</th>
               </tr>
+              {users && users.length ? (
+                users.map(user => {
+                  return (
+                    <tr key={user.id}>
+                      <td>{user.id}</td>
+                      <td>{user.firstName}</td>
+                      <td>{user.lastName}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        {user.userType}
+                        <button
+                          type="button"
+                          onClick={() => this.handleUpdateUser(user)}
+                        >
+                          Toggle Type
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })
+              ) : (
+                <div>No users available</div>
+              )}
             </thead>
           </Table>
-          {users && users.length ? (
-            users.map(user => {
-              return (
-                <div className="userBox" key={user.id}>
-                  <Table striped bordered hover size="sm">
-                    <tbody>
-                      <tr>
-                        <td>{user.id}</td>
-                        <td>{user.firstName}</td>
-                        <td>{user.lastName}</td>
-                        <td>{user.email}</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </div>
-              )
-            })
-          ) : (
-            <div>No users available</div>
-          )}
         </div>
       </div>
     )
@@ -55,7 +63,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getAllUsers: () => dispatch(fetchAllUsers())
+  getAllUsers: () => dispatch(fetchAllUsers()),
+  updateUserType: user => dispatch(fetchUpdatedUser(user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllUsers)
