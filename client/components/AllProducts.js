@@ -3,7 +3,9 @@ import {connect} from 'react-redux'
 import {fetchProducts} from '../store/allProducts'
 import {deleteProduct} from '../store/singleProduct'
 import QuantityDropDown from './QuantityDropDown'
-import {Card, ListGroup, ListGroupItem} from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Button from 'react-bootstrap/Button'
 
 export class AllProducts extends React.Component {
