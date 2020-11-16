@@ -63,6 +63,7 @@ router.put('/checkout', async (req, res, next) => {
     await orderToUpdate.update({
       status: 'closed',
       name: req.body.card.name,
+      email: req.body.email,
       addressLine1: req.body.card.address_line1,
       addressLine2: req.body.card.address_line2,
       city: req.body.card.address_city,
