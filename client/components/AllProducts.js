@@ -3,7 +3,9 @@ import {connect} from 'react-redux'
 import {fetchProducts} from '../store/allProducts'
 import {deleteProduct} from '../store/singleProduct'
 import QuantityDropDown from './QuantityDropDown'
-import {Card, ListGroup, ListGroupItem} from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Button from 'react-bootstrap/Button'
 
 export class AllProducts extends React.Component {
@@ -19,7 +21,7 @@ export class AllProducts extends React.Component {
   }
 
   async handleClick(id) {
-    // await this.props.deleteProduct(id)
+    await this.props.deleteProduct(id)
     this.props.getProducts()
   }
   handleSelectChange(evt) {
@@ -37,6 +39,7 @@ export class AllProducts extends React.Component {
     })
 
     return (
+
       <>
         <div>
           <label htmlFor="productTypeFilter"> Category: </label>
@@ -51,17 +54,37 @@ export class AllProducts extends React.Component {
           </select>
         </div>
 
-        <div className="productsBody">
-          <div className="allProductsContainer">
-            {products && products.length ? (
-              products.map(product => {
-                return (
-                  <Card
-                    style={{width: '18rem', margin: '1em'}}
-                    key={product.id}
-                  >
-                    <Card.Header
-                      as="a"
+      <div className="productsBody">
+        <div className="allProductsContainer">
+          {products && products.length ? (
+            products.map(product => {
+              return (
+                <Card style={{width: '18rem', margin: '1em'}} key={product.id}>
+                  <Card.Header
+                    as="a"
+                    href={`/products/${product.id}`}
+                    role="img"
+                    alt={product.name}
+                    className="productImage"
+                    style={{backgroundImage: `url(${product.imageUrl})`}}
+                  />
+                  <Card.Body>
+                    <a href={`/products/${product.id}`} className="link">
+                      <Card.Title>{product.name}</Card.Title>
+                    </a>
+                  </Card.Body>
+                  <ListGroup className="list-group-flush">
+                    <ListGroupItem>Price: {product.priceDisplay}</ListGroupItem>
+                    <ListGroupItem id="quantityRow">
+                      <div>Quantity: </div>
+                      <QuantityDropDown
+                        product={product}
+                        bttnText="Add to cart!"
+                      />
+                    </ListGroupItem>
+                  </ListGroup>
+                  <Card.Body>
+                    <Card.Link
                       href={`/products/${product.id}`}
                       role="img"
                       alt={product.name}
@@ -124,7 +147,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getProducts: () => dispatch(fetchProducts())
-  // deleteProduct: id => dispatch(deleteProduct(id))
+  deleteProduct: id => dispatch(deleteProduct(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)

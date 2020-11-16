@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product, Order, OrderItem} = require('../db/models')
+const nodeMailer = require('nodemailer')
 module.exports = router
 
 //GET /api/cart
@@ -72,6 +73,34 @@ router.put('/checkout', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+})
+
+router.post('/checkout', function(req, res) {
+  console.log(req.user)
+  let transporter = nodeMailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      // should be replaced with real sender's account
+      user: 'gracehopperbakes@gmail.com',
+      pass: process.env.GOOGLE_PASSWORD
+    }
+  })
+  let mailOptions = {
+    // should be replaced with real recipient's account
+    to: req.user.email,
+    subject: req.body.subject,
+    text: req.body.message
+  }
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error)
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response)
+  })
+  //res.writeHead(301, { Location: 'index.html' });
+  res.end()
 })
 
 // increment quantity of item in cart
@@ -154,5 +183,25 @@ router.delete('/item/:id', async (req, res, next) => {
     res.sendStatus(204)
   } catch (err) {
     next(err)
+  }
+})
+
+//GET /api/cart/history/:userId
+router.get('/history/:userId', async (req, res, next) => {
+  try {
+    //if you're not logged in --> 401
+    //and if you're not an admin --> you can only look at your own order history
+    if (
+      !req.user ||
+      (req.user.userType !== 'admin' && req.params.userId != req.user.id)
+    )
+      return res.sendStatus(401)
+    const orders = await req.user.getOrders({
+      include: Product,
+      where: {status: 'closed'}
+    })
+    res.send(orders)
+  } catch (error) {
+    next(error)
   }
 })
