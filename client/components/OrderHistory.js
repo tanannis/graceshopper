@@ -1,9 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchHistory} from '../store'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import {Table} from 'react-bootstrap'
 
 class OrderHistory extends React.Component {
   componentDidMount() {
@@ -13,43 +11,37 @@ class OrderHistory extends React.Component {
     const orders = this.props.history || []
     return (
       <div>
-        <ul>
+        <ol>
           {orders.map(order => (
             <li key={order.id}>
-              <p>{order.createdAt}</p>
-              <div className="allProductsContainer">
-                {order.products.map(product => (
-                  <Card
-                    style={{width: '18rem', margin: '1em'}}
-                    key={product.id}
-                  >
-                    <Card.Header
-                      as="a"
-                      href={`/products/${product.id}`}
-                      role="img"
-                      alt={product.name}
-                      className="productImage"
-                      style={{backgroundImage: `url(${product.imageUrl})`}}
-                    />
-                    <Card.Body>
-                      <a href={`/products/${product.id}`} className="link">
-                        <Card.Title>{product.name}</Card.Title>
-                      </a>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                      <ListGroupItem>
-                        Price: {product.orderItem.priceDisplay}
-                      </ListGroupItem>
-                      <ListGroupItem id="quantityRow">
-                        <div>Quantity: {product.orderItem.quantity}</div>
-                      </ListGroupItem>
-                    </ListGroup>
-                  </Card>
-                ))}
-              </div>
+              <p>Date ordered: {order.createdAt}</p>
+              <p>Shipping Information:</p>
+              <p>{order.name}</p>
+              <p>{order.addressLine1}</p>
+              <p>
+                {order.city}, {order.state}
+              </p>
+              <Table striped bordered hover size="small">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                  </tr>
+                  {order.products.map(product => {
+                    return (
+                      <tr key={product.id}>
+                        <td>{product.name}</td>
+                        <td>{product.priceDisplay}</td>
+                        <td>{product.orderItem.quantity}</td>
+                      </tr>
+                    )
+                  })}
+                </thead>
+              </Table>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     )
   }
