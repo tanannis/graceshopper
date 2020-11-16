@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchCart, fetchCheckoutCart} from '../store/cart'
 import Confirmation from './Confirmation'
 import StripeCheckout from 'react-stripe-checkout'
-import axios from 'axios'
+import Loader from './Loader'
 
 class CheckoutPage extends React.Component {
   constructor(props) {
@@ -15,7 +15,8 @@ class CheckoutPage extends React.Component {
       city: '',
       state: '',
       zipCode: '',
-      orderProcessed: false
+      orderProcessed: false,
+      isLoading: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -57,12 +58,14 @@ class CheckoutPage extends React.Component {
       city: '',
       state: '',
       zipCode: '',
-      orderProcessed: true
+      orderProcessed: true,
+      isLoading: true
     })
   }
 
   async componentDidMount() {
     await this.props.getCart()
+    this.setState({isLoading: false})
   }
 
   async handleToken(token) {
@@ -80,6 +83,11 @@ class CheckoutPage extends React.Component {
         return accum + current.price * current.orderItem.quantity
       }, 0)
     }
+
+    if (this.state.isLoading) {
+      return <Loader />
+    }
+
     if (!this.state.orderProcessed && products && products.length) {
       return (
         <>
