@@ -9,6 +9,13 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Button from 'react-bootstrap/Button'
 
 export class AllProducts extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      filter: 'all products'
+    }
+    this.handleSelectChange = this.handleSelectChange.bind(this)
+  }
   async componentDidMount() {
     await this.props.getProducts()
   }
@@ -17,12 +24,36 @@ export class AllProducts extends React.Component {
     await this.props.deleteProduct(id)
     this.props.getProducts()
   }
-
+  handleSelectChange(evt) {
+    this.setState({
+      filter: evt.target.value
+    })
+  }
   render() {
-    const products = this.props.products || []
     const isAdmin = this.props.isAdmin
+    const {filter} = this.state
+    const products = this.props.products.filter(product => {
+      if (filter === 'all products') return product
+      if (filter === 'pastry') return product.productType === 'pastry'
+      if (filter === 'beverage') return product.productType === 'beverage'
+    })
 
     return (
+
+      <>
+        <div>
+          <label htmlFor="productTypeFilter"> Category: </label>
+          <select
+            onChange={this.handleSelectChange}
+            value={this.setState.filter}
+            name="productTypeFilter"
+          >
+            <option>all products</option>
+            <option>pastry</option>
+            <option>beverage</option>
+          </select>
+        </div>
+
       <div className="productsBody">
         <div className="allProductsContainer">
           {products && products.length ? (
@@ -55,30 +86,56 @@ export class AllProducts extends React.Component {
                   <Card.Body>
                     <Card.Link
                       href={`/products/${product.id}`}
-                      className="link"
-                    >
-                      View Details
-                    </Card.Link>
-                    <br />
-                    {isAdmin && (
-                      <Button
-                        id="cartButton"
-                        variant="dark"
-                        className="removeProductButton"
-                        onClick={() => this.handleClick(product.id)}
+                      role="img"
+                      alt={product.name}
+                      className="productImage"
+                      style={{backgroundImage: `url(${product.imageUrl})`}}
+                    />
+                    <Card.Body>
+                      <a href={`/products/${product.id}`} className="link">
+                        <Card.Title>{product.name}</Card.Title>
+                      </a>
+                    </Card.Body>
+                    <ListGroup className="list-group-flush">
+                      <ListGroupItem>
+                        Price: {product.priceDisplay}
+                      </ListGroupItem>
+                      <ListGroupItem id="quantityRow">
+                        <div>Quantity:</div>
+                        <QuantityDropDown
+                          product={product}
+                          bttnText="Add to cart!"
+                        />
+                      </ListGroupItem>
+                    </ListGroup>
+                    <Card.Body>
+                      <Card.Link
+                        href={`/products/${product.id}`}
+                        className="link"
                       >
-                        Remove Product
-                      </Button>
-                    )}
-                  </Card.Body>
-                </Card>
-              )
-            })
-          ) : (
-            <div>No products available</div>
-          )}
+                        View Details
+                      </Card.Link>
+                      <br />
+                      {isAdmin && (
+                        <Button
+                          id="cartButton"
+                          variant="dark"
+                          className="removeProductButton"
+                          onClick={() => this.handleClick(product.id)}
+                        >
+                          Remove Product
+                        </Button>
+                      )}
+                    </Card.Body>
+                  </Card>
+                )
+              })
+            ) : (
+              <div>No products available</div>
+            )}
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 }
@@ -89,7 +146,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getProducts: () => dispatch(fetchProducts()),
+  getProducts: () => dispatch(fetchProducts())
   deleteProduct: id => dispatch(deleteProduct(id))
 })
 

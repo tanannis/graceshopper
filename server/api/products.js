@@ -14,10 +14,37 @@ router.get('/', async (req, res, next) => {
         'price',
         'imageUrl',
         'quantity',
-        'priceDisplay'
+        'priceDisplay',
+        'productType'
       ]
     })
     res.json(products)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/pastry', async (req, res, next) => {
+  try {
+    const pastry = await Product.findAll({
+      where: {
+        productType: 'pastry'
+      }
+    })
+    res.json(pastry)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/beverage', async (req, res, next) => {
+  try {
+    const pastry = await Product.findAll({
+      where: {
+        productType: 'beverage'
+      }
+    })
+    res.json(pastry)
   } catch (err) {
     next(err)
   }

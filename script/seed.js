@@ -43,7 +43,8 @@ const productsArray = [
     description:
       'Our signature handmade napoleon made of very thin and flaky puff pastry cake layers and a smooth, rich and luscious pastry cream in between the layers, topped with fresh fruit.',
     price: 800,
-    quantity: 100
+    quantity: 100,
+    productType: 'pastry'
   },
   {
     name: 'Chocolate Dream Donuts',
@@ -52,7 +53,8 @@ const productsArray = [
     description:
       'Our famous chocolate donuts covered with silky melted chocolate glaze, paradise in every bite...',
     price: 300,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Pear Puff',
@@ -60,7 +62,8 @@ const productsArray = [
     description:
       'Limited edition: pear puff made of very thin and flaky puff pastry cake layers and a smooth, rich and luscious pear pastry cream in between the layers.',
     price: 600,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'French Croissant',
@@ -68,7 +71,8 @@ const productsArray = [
     description:
       'Our best seller: this handmade cloud-like puff pastry is buttery and flaky. It really is one of the most decadent things you can eat.',
     price: 300,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Cream Puff',
@@ -77,7 +81,8 @@ const productsArray = [
     description:
       'Try our new fluffy cream puff today! It is made of very thin and flaky puff pastry layers filled with rich vanilla cream inside.',
     price: 600,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Fruit Tart',
@@ -85,7 +90,8 @@ const productsArray = [
     description:
       'This fruit tart has a sweet pastry crust, smooth cream filling and topped with organic fresh fruit. It is a healthy and elegant dessert for tea time!',
     price: 600,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'New York Cheese Cake',
@@ -93,7 +99,8 @@ const productsArray = [
     description:
       'Creamy and delicious with a touch of lime juice, the New York Cheese Cake is one of our best sellers!',
     price: 700,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Strawberry Cheese Cake',
@@ -101,7 +108,8 @@ const productsArray = [
     description:
       'Topped with fresh organic strawberry, this creamy cheese cake is our new signature for an elegant experience.',
     price: 600,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Curry Triangle Puff',
@@ -109,7 +117,8 @@ const productsArray = [
     description:
       'A classic Asian pastry with curry filling inside, its crust is made of very thin and flaky puff pastry cake layers that will give you an unique experience. ',
     price: 600,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Mini Spinach Quiche',
@@ -117,7 +126,8 @@ const productsArray = [
     description:
       'Our new favorite: made with heavy cream and organic spinach, this quiche is a classic French pastry.',
     price: 500,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Egg Tart',
@@ -125,7 +135,8 @@ const productsArray = [
     description:
       'Our new favorite: made with organic eggs, its crust is made of flaky puff pastry cake layers, this tart is a classic Asian pastry.',
     price: 500,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
   },
   {
     name: 'Chocolate Chip Scone',
@@ -133,7 +144,37 @@ const productsArray = [
     description:
       'Our signature scone: it has a “short” crumbly texture that is a must for afternoon tea!',
     price: 500,
-    quantity: 10
+    quantity: 10,
+    productType: 'pastry'
+  },
+  {
+    name: 'Organic Coffee bean',
+    imageUrl:
+      'https://i.ibb.co/cx7J4qG/blank-realistic-paper-packaging-coffee-bag-vector-5161680.jpg',
+    description:
+      'Try our home roast oraganic coffee beans, medium roasted with a special technique to give you a unique coffee experience.',
+    price: 3000,
+    quantity: 10,
+    productType: 'beverage'
+  },
+  {
+    name: 'Organic Earl Grey Tea',
+    imageUrl: 'https://i.ibb.co/HFZqTys/39-2.jpg',
+    description:
+      '100% organic from our local partners in New Jersey, this tea is a symbol of wellness.',
+    price: 3000,
+    quantity: 10,
+    productType: 'beverage'
+  },
+  {
+    name: 'Organic Orange Juice',
+    imageUrl:
+      'https://i.ibb.co/Ptrgpc9/juice-or-milk-package-mock-up-200ml-vector-18474207.jpg',
+    description:
+      '100% organic from our local farmers, this juice has no added sugar and unknown preservative.',
+    price: 500,
+    quantity: 10,
+    productType: 'beverage'
   }
 ]
 

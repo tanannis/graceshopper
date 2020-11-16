@@ -29,6 +29,9 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
+  },
+  productType: {
+    type: Sequelize.STRING
   }
 })
 
