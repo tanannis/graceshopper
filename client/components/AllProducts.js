@@ -45,7 +45,7 @@ export class AllProducts extends React.Component {
                   <ListGroup className="list-group-flush">
                     <ListGroupItem>Price: {product.priceDisplay}</ListGroupItem>
                     <ListGroupItem id="quantityRow">
-                      <div>Quantity:</div>
+                      <div>Quantity: </div>
                       <QuantityDropDown
                         product={product}
                         bttnText="Add to cart!"
