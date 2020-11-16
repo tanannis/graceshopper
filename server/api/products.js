@@ -14,7 +14,8 @@ router.get('/', async (req, res, next) => {
         'price',
         'imageUrl',
         'quantity',
-        'priceDisplay'
+        'priceDisplay',
+        'productType'
       ]
     })
     res.json(products)
