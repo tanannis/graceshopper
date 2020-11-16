@@ -75,23 +75,6 @@ export class AllProducts extends React.Component {
                       style={{backgroundImage: `url(${product.imageUrl})`}}
                     />
                     <Card.Body>
-                      <a href={`/products/${product.id}`} className="link">
-                        <Card.Title>{product.name}</Card.Title>
-                      </a>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                      <ListGroupItem>
-                        Price: {product.priceDisplay}
-                      </ListGroupItem>
-                      <ListGroupItem id="quantityRow">
-                        <div>Quantity: </div>
-                        <QuantityDropDown
-                          product={product}
-                          bttnText="Add to cart!"
-                        />
-                      </ListGroupItem>
-                    </ListGroup>
-                    <Card.Body>
                       <Card.Link
                         href={`/products/${product.id}`}
                         role="img"
