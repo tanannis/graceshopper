@@ -19,6 +19,7 @@ export class AllProducts extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
   }
+
   async componentDidMount() {
     await this.props.getProducts()
     this.setState({isLoading: false})
