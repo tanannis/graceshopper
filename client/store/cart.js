@@ -95,7 +95,9 @@ export const fetchCheckoutCart = cartToCheckout => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/cart/checkout`, cartToCheckout)
+      console.log('CART', cartToCheckout)
       const message = {
+        email: '', // NEED TO ADD EMAIL TO ORDER MODEL
         subject: 'Grace Bakes Order Confirmation',
         message: 'Congrats on purchasing from Grace Bakes!'
       }
