@@ -2,13 +2,9 @@
 import axios from 'axios'
 
 const GET_CART = 'GET_CART'
-
 const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
-
 const ADD_NEW_ITEM_TO_CART = 'ADD_NEW_ITEM_TO_CART'
-
 const DELETE_ITEM_FROM_CART = 'DELETE_ITEM_FROM_CART'
-
 const CHECKOUT_CART = 'CHECKOUT_CART'
 
 //action creators
@@ -99,6 +95,13 @@ export const fetchCheckoutCart = cartToCheckout => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/cart/checkout`, cartToCheckout)
+      console.log('CART', cartToCheckout)
+      const message = {
+        email: '', // NEED TO ADD EMAIL TO ORDER MODEL
+        subject: 'Grace Bakes Order Confirmation',
+        message: 'Congrats on purchasing from Grace Bakes!'
+      }
+      await axios.post('/api/cart/checkout', message)
       dispatch(checkoutCart(data))
     } catch (error) {
       console.error(error)
