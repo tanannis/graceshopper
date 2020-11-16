@@ -57,43 +57,49 @@ export class AllProducts extends React.Component {
             <option>beverage</option>
           </select>
         </div>
-      <div className="productsBody">
-        <div className="allProductsContainer">
-          {products && products.length ? (
-            products.map(product => {
-              return (
-                <Card style={{width: '18rem', margin: '1em'}} key={product.id}>
-                  <Card.Header
-                    as="a"
-                    href={`/products/${product.id}`}
-                    role="img"
-                    alt={product.name}
-                    className="productImage"
-                    style={{backgroundImage: `url(${product.imageUrl})`}}
-                  />
-                  <Card.Body>
-                    <a href={`/products/${product.id}`} className="link">
-                      <Card.Title>{product.name}</Card.Title>
-                    </a>
-                  </Card.Body>
-                  <ListGroup className="list-group-flush">
-                    <ListGroupItem>Price: {product.priceDisplay}</ListGroupItem>
-                    <ListGroupItem id="quantityRow">
-                      <div>Quantity: </div>
-                      <QuantityDropDown
-                        product={product}
-                        bttnText="Add to cart!"
-                      />
-                    </ListGroupItem>
-                  </ListGroup>
-                  <Card.Body>
-                    <Card.Link
+        <div className="productsBody">
+          <div className="allProductsContainer">
+            {products && products.length ? (
+              products.map(product => {
+                return (
+                  <Card
+                    style={{width: '18rem', margin: '1em'}}
+                    key={product.id}
+                  >
+                    <Card.Header
+                      as="a"
                       href={`/products/${product.id}`}
                       role="img"
                       alt={product.name}
                       className="productImage"
                       style={{backgroundImage: `url(${product.imageUrl})`}}
                     />
+                    <Card.Body>
+                      <a href={`/products/${product.id}`} className="link">
+                        <Card.Title>{product.name}</Card.Title>
+                      </a>
+                    </Card.Body>
+                    <ListGroup className="list-group-flush">
+                      <ListGroupItem>
+                        Price: {product.priceDisplay}
+                      </ListGroupItem>
+                      <ListGroupItem id="quantityRow">
+                        <div>Quantity: </div>
+                        <QuantityDropDown
+                          product={product}
+                          bttnText="Add to cart!"
+                        />
+                      </ListGroupItem>
+                    </ListGroup>
+                    <Card.Body>
+                      <Card.Link
+                        href={`/products/${product.id}`}
+                        role="img"
+                        alt={product.name}
+                        className="productImage"
+                        style={{backgroundImage: `url(${product.imageUrl})`}}
+                      />
+                    </Card.Body>
                     <Card.Body>
                       <a href={`/products/${product.id}`} className="link">
                         <Card.Title>{product.name}</Card.Title>
@@ -149,7 +155,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getProducts: () => dispatch(fetchProducts())
+  getProducts: () => dispatch(fetchProducts()),
   deleteProduct: id => dispatch(deleteProduct(id))
 })
 
