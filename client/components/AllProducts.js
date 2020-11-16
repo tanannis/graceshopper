@@ -3,23 +3,26 @@ import {connect} from 'react-redux'
 import {fetchProducts} from '../store/allProducts'
 import {deleteProduct} from '../store/singleProduct'
 import QuantityDropDown from './QuantityDropDown'
+import Loader from './Loader'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Button from 'react-bootstrap/Button'
 
 export class AllProducts extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
+      isLoading: true,
       filter: 'all products'
     }
+    this.handleClick = this.handleClick.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
   }
   async componentDidMount() {
     await this.props.getProducts()
+    this.setState({isLoading: false})
   }
-
   async handleClick(id) {
     await this.props.deleteProduct(id)
     this.props.getProducts()
@@ -37,9 +40,10 @@ export class AllProducts extends React.Component {
       if (filter === 'pastry') return product.productType === 'pastry'
       if (filter === 'beverage') return product.productType === 'beverage'
     })
-
+    if (this.state.isLoading) {
+      return <Loader />
+    }
     return (
-
       <>
         <div>
           <label htmlFor="productTypeFilter"> Category: </label>
@@ -53,7 +57,6 @@ export class AllProducts extends React.Component {
             <option>beverage</option>
           </select>
         </div>
-
       <div className="productsBody">
         <div className="allProductsContainer">
           {products && products.length ? (

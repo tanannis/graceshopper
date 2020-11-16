@@ -215,3 +215,8 @@ button {
 .tableHeader {
   font-weight: bold;
 }
+
+.spinner {
+  margin-top: 100px;
+  text-align: center;
+}

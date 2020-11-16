@@ -3,66 +3,21 @@ import {connect} from 'react-redux'
 import {fetchCart, fetchCheckoutCart} from '../store/cart'
 import Confirmation from './Confirmation'
 import StripeCheckout from 'react-stripe-checkout'
-import axios from 'axios'
+import Loader from './Loader'
 
 class CheckoutPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: '',
-      lastName: '',
-      addressLineOne: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      orderProcessed: false
+      orderProcessed: false,
+      isLoading: true
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleToken = this.handleToken.bind(this)
-  }
-
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
-  }
-
-  async handleSubmit(evt) {
-    evt.preventDefault()
-    let cart = {...this.props.cart}
-    if (this.state.firstName !== '') {
-      cart.firstName = this.state.firstName
-    }
-    if (this.state.lastName !== '') {
-      cart.lastName = this.state.lastName
-    }
-    if (this.state.addressLineOne !== '') {
-      cart.addressLineOne = this.state.addressLineOne
-    }
-    if (this.state.city !== '') {
-      cart.city = this.state.city
-    }
-    if (this.state.state !== '') {
-      cart.state = this.state.state
-    }
-    if (this.state.zipCode !== '') {
-      cart.zipCode = this.state.zipCode
-    }
-    await this.props.checkoutCart(cart)
-    this.setState({
-      firstName: '',
-      lastName: '',
-      addressLineOne: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      orderProcessed: true
-    })
   }
 
   async componentDidMount() {
     await this.props.getCart()
+    this.setState({isLoading: false})
   }
 
   async handleToken(token) {
@@ -80,7 +35,10 @@ class CheckoutPage extends React.Component {
         return accum + current.price * current.orderItem.quantity
       }, 0)
     }
-    if (!this.state.orderProcessed && products && products.length) {
+
+    if (this.state.isLoading) {
+      return <Loader />
+    } else if (!this.state.orderProcessed && products && products.length) {
       return (
         <>
           <h2>Checkout page!</h2>
