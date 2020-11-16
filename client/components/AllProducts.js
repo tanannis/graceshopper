@@ -10,7 +10,7 @@ export class AllProducts extends React.Component {
   constructor() {
     super()
     this.state = {
-      filter: 'all'
+      filter: 'all products'
     }
     this.handleSelectChange = this.handleSelectChange.bind(this)
   }
@@ -31,7 +31,7 @@ export class AllProducts extends React.Component {
     const isAdmin = this.props.isAdmin
     const {filter} = this.state
     const products = this.props.products.filter(product => {
-      if (filter === 'all') return product
+      if (filter === 'all products') return product
       if (filter === 'pastry') return product.productType === 'pastry'
       if (filter === 'beverage') return product.productType === 'beverage'
     })
