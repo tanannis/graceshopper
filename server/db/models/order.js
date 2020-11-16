@@ -13,6 +13,14 @@ const Order = db.define('order', {
   name: {
     type: Sequelize.STRING
   },
+
+  email: {
+    type: Sequelize.STRING,
+    validate: {
+      isEmail: true
+    }
+  },
+
   addressLine1: {
     type: Sequelize.STRING
   },

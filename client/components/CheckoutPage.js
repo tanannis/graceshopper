@@ -24,6 +24,7 @@ class CheckoutPage extends React.Component {
     let cart = {...this.props.cart}
     token.cart = cart
     await this.props.checkoutCart(token)
+    await this.props.getCart()
   }
 
   render() {
