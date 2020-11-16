@@ -7,7 +7,9 @@ const Order = db.define('order', {
     defaultValue: 'open'
   },
   sessionId: {type: Sequelize.STRING},
+
   userId: {type: Sequelize.INTEGER},
+
   name: {
     type: Sequelize.STRING
   },

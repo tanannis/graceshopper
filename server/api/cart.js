@@ -156,3 +156,23 @@ router.delete('/item/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+//GET /api/cart/history/:userId
+router.get('/history/:userId', async (req, res, next) => {
+  try {
+    //if you're not logged in --> 401
+    //and if you're not an admin --> you can only look at your own order history
+    if (
+      !req.user ||
+      (req.user.userType !== 'admin' && req.params.userId != req.user.id)
+    )
+      return res.sendStatus(401)
+    const orders = await req.user.getOrders({
+      include: Product,
+      where: {status: 'closed'}
+    })
+    res.send(orders)
+  } catch (error) {
+    next(error)
+  }
+})
