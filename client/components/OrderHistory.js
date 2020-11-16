@@ -21,7 +21,7 @@ class OrderHistory extends React.Component {
               <p>
                 {order.city}, {order.state}
               </p>
-              <Table striped bordered hover size="small">
+              <Table striped bordered hover size="small" id="orderHistory">
                 <thead>
                   <tr>
                     <th>Item</th>

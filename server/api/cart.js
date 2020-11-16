@@ -77,19 +77,16 @@ router.put('/checkout', async (req, res, next) => {
 })
 
 router.post('/checkout', function(req, res) {
-  console.log(req.user)
   let transporter = nodeMailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-      // should be replaced with real sender's account
       user: process.env.GOOGLE_EMAIL,
       pass: process.env.GOOGLE_PASSWORD
     }
   })
   let mailOptions = {
-    // should be replaced with real recipient's account
     to: req.user.email,
     subject: req.body.subject,
     text: req.body.message
@@ -100,7 +97,6 @@ router.post('/checkout', function(req, res) {
     }
     console.log('Message %s sent: %s', info.messageId, info.response)
   })
-  //res.writeHead(301, { Location: 'index.html' });
   res.end()
 })
 
