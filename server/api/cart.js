@@ -84,7 +84,7 @@ router.post('/checkout', function(req, res) {
     auth: {
       // should be replaced with real sender's account
       user: 'gracehopperbakes@gmail.com',
-      pass: 'GraceBakesCakes123!'
+      pass: process.env.GOOGLE_PASSWORD
     }
   })
   let mailOptions = {
