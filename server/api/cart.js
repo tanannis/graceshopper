@@ -83,7 +83,7 @@ router.post('/checkout', function(req, res) {
     secure: true,
     auth: {
       // should be replaced with real sender's account
-      user: 'gracehopperbakes@gmail.com',
+      user: process.env.GOOGLE_EMAIL,
       pass: process.env.GOOGLE_PASSWORD
     }
   })
