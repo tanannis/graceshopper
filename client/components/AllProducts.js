@@ -46,7 +46,7 @@ export class AllProducts extends React.Component {
     }
     return (
       <>
-        <div>
+        <div className="productFilter">
           <label htmlFor="productTypeFilter"> Category: </label>
           <select
             onChange={this.handleSelectChange}
