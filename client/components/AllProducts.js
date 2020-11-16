@@ -12,15 +12,14 @@ export class AllProducts extends React.Component {
     this.state = {
       filter: 'all'
     }
-    this.handleSelectChange.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this)
   }
-
   async componentDidMount() {
     await this.props.getProducts()
   }
 
   async handleClick(id) {
-    await this.props.deleteProduct(id)
+    // await this.props.deleteProduct(id)
     this.props.getProducts()
   }
   handleSelectChange(evt) {
@@ -29,27 +28,28 @@ export class AllProducts extends React.Component {
     })
   }
   render() {
-    const products = this.props.products || []
     const isAdmin = this.props.isAdmin
     const {filter} = this.state
-    const selectProducts = this.props.products.filter(product => {
+    const products = this.props.products.filter(product => {
       if (filter === 'all') return product
       if (filter === 'pastry') return product.productType === 'pastry'
       if (filter === 'beverage') return product.productType === 'beverage'
     })
 
     return (
-      <div>
-        <label htmlFor="categoryFilter"> Category: </label>
-        <select
-          onChange={this.handleSelectChange}
-          value={filter}
-          name="categoryFilter"
-        >
-          <option>all products</option>
-          <option>pastry</option>
-          <option>beverage</option>
-        </select>
+      <>
+        <div>
+          <label htmlFor="productTypeFilter"> Category: </label>
+          <select
+            onChange={this.handleSelectChange}
+            value={this.setState.filter}
+            name="productTypeFilter"
+          >
+            <option>all products</option>
+            <option>pastry</option>
+            <option>beverage</option>
+          </select>
+        </div>
 
         <div className="productsBody">
           <div className="allProductsContainer">
@@ -112,7 +112,7 @@ export class AllProducts extends React.Component {
             )}
           </div>
         </div>
-      </div>
+      </>
     )
   }
 }
@@ -123,8 +123,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getProducts: () => dispatch(fetchProducts()),
-  deleteProduct: id => dispatch(deleteProduct(id))
+  getProducts: () => dispatch(fetchProducts())
+  // deleteProduct: id => dispatch(deleteProduct(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
