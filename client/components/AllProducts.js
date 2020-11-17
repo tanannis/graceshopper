@@ -14,7 +14,7 @@ export class AllProducts extends React.Component {
     super(props)
     this.state = {
       isLoading: true,
-      filter: 'all products'
+      filter: 'All Products'
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
@@ -37,9 +37,9 @@ export class AllProducts extends React.Component {
     const isAdmin = this.props.isAdmin
     const {filter} = this.state
     const products = this.props.products.filter(product => {
-      if (filter === 'all products') return product
-      if (filter === 'pastry') return product.productType === 'pastry'
-      if (filter === 'beverage') return product.productType === 'beverage'
+      if (filter === 'All products') return product
+      if (filter === 'Pastry') return product.productType === 'pastry'
+      if (filter === 'Beverage') return product.productType === 'beverage'
     })
     if (this.state.isLoading) {
       return <Loader />
@@ -63,11 +63,10 @@ export class AllProducts extends React.Component {
             {products && products.length ? (
               products.map(product => {
                 return (
-                  <div className="col-12 col-lg-3 col-md-6">
+                  <div className="col-12 col-lg-3 col-md-6" key={product.id}>
                     <Card
                       className=""
                       // style={{width: '18rem', margin: '1em'}}
-                      key={product.id}
                     >
                       <Card.Header
                         as="a"
