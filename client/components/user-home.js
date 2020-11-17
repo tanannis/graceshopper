@@ -11,7 +11,7 @@ export const UserHome = props => {
   return (
     <div className="homePage">
       <div className="cupcakeBackground" />
-      <div>{firstName && <h4>Welcome back, {firstName}!</h4>}</div>
+      <div>{firstName && <h4>Muffin compares to you, {firstName}!</h4>}</div>
 
       <div className="homeCenter">
         <div className="homePageContent">
