@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addProduct} from '../store/singleProduct'
 import {Form} from 'react-bootstrap'
+// import NewProductConfirmation from './NewProductConfirmation'
 
 class NewProductForm extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class NewProductForm extends React.Component {
       price: '',
       description: '',
       quantity: '',
-      imageUrl: ''
+      imageUrl: '',
+      productAdded: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
