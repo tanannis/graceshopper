@@ -65,7 +65,7 @@ export class Cart extends React.Component {
                         <tr>
                           <td className="tableHeader">Quantity: </td>
                           <td>
-                            Quantity: {product.orderItem.quantity}
+                            {product.orderItem.quantity}
                             <QuantityDropDown
                               product={product}
                               bttnText="Update Quantity"
