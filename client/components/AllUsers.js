@@ -26,6 +26,7 @@ class AllUsers extends React.Component {
               <th>Email</th>
               <th>Type</th>
               <th>Toggle User Type</th>
+              <th>Order History</th>
             </tr>
             {users && users.length ? (
               users.map(user => {
@@ -44,6 +45,16 @@ class AllUsers extends React.Component {
                         onClick={() => this.handleUpdateUser(user)}
                       >
                         Toggle Type
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        id="cartButton"
+                        variant="dark"
+                        className="removeProductButton"
+                        href={`/history/${user.id}`}
+                      >
+                        View Order History
                       </Button>
                     </td>
                   </tr>
