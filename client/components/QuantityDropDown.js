@@ -111,6 +111,7 @@ class QuantityDropDown extends React.Component {
             name="quantity"
             defaultValue="quantity"
             onChange={this.changeSelected}
+            className="quantitySelect"
           >
             <option value="" disabled />
             {quantityArray.map((element, index) => (

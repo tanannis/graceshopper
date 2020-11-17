@@ -21,9 +21,8 @@ router.get('/', permit(['admin']), async (req, res, next) => {
     next(err)
   }
 })
-//add back in -> permit(['admin'])
 
-router.put('/changeUserType/:id', async (req, res, next) => {
+router.put('/changeUserType/:id', permit(['admin']), async (req, res, next) => {
   try {
     const userToUpdate = await User.findByPk(req.params.id)
     if (!userToUpdate) {

@@ -29,8 +29,6 @@ img {
   max-height: 500px;
 }
 
-/* Riley took button styling from JPFP - but we can always change it! */
-
 button {
   border: none;
   background-color: #7b5b83;
@@ -53,6 +51,11 @@ button {
 
 .cartContainer {
   margin: 20px;
+}
+
+.emptyCart {
+  margin: 20px;
+  text-align: center;
 }
 
 .buttonBox {
@@ -78,6 +81,7 @@ button {
   margin-left: 80px;
   margin-top: 20px;
 }
+
 .cartContainer {
   width: 100%;
 }
@@ -213,6 +217,32 @@ button {
   text-align: center;
 }
 
+
+.quantitySelect {
+  width: 50px;
+}
+
+#orderHistory {
+  width: 50%;
+}
+
+
+.orderSummary {
+  margin: 20px;
+}
+
+.allUsersContainer {
+  margin: 20px;
+}
+
+
+.buttonCheckout {
+  background-color: #7b5b83;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
 .thankYou {
   margin: 50px;
   padding: 50px;
@@ -220,7 +250,6 @@ button {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  /* justify-content: center; */
 }
 
 .thankYouContent {

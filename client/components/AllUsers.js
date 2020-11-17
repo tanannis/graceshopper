@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllUsers, fetchUpdatedUser} from '../store/allUsers'
-import Table from 'react-bootstrap/Table'
+import {Table, Button} from 'react-bootstrap'
 
 class AllUsers extends React.Component {
   async componentDidMount() {
@@ -16,43 +16,44 @@ class AllUsers extends React.Component {
     const users = this.props.users || []
 
     return (
-      <div className="usersBody">
-        <div className="allUsersContainer">
-          <Table striped bordered hover size="small">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Type</th>
-              </tr>
-              {users && users.length ? (
-                users.map(user => {
-                  return (
-                    <tr key={user.id}>
-                      <td>{user.id}</td>
-                      <td>{user.firstName}</td>
-                      <td>{user.lastName}</td>
-                      <td>{user.email}</td>
-                      <td>
-                        {user.userType}
-                        <button
-                          type="button"
-                          onClick={() => this.handleUpdateUser(user)}
-                        >
-                          Toggle Type
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                })
-              ) : (
-                <div>No users available</div>
-              )}
-            </thead>
-          </Table>
-        </div>
+      <div className="allUsersContainer">
+        <Table striped bordered hover size="small">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Type</th>
+              <th>Toggle User Type</th>
+            </tr>
+            {users && users.length ? (
+              users.map(user => {
+                return (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.firstName}</td>
+                    <td>{user.lastName}</td>
+                    <td>{user.email}</td>
+                    <td>{user.userType}</td>
+                    <td>
+                      <Button
+                        id="cartButton"
+                        variant="dark"
+                        className="removeProductButton"
+                        onClick={() => this.handleUpdateUser(user)}
+                      >
+                        Toggle Type
+                      </Button>
+                    </td>
+                  </tr>
+                )
+              })
+            ) : (
+              <div>No users available</div>
+            )}
+          </thead>
+        </Table>
       </div>
     )
   }

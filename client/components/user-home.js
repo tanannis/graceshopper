@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import AllUsers from './AllUsers'
-import AllProducts from './AllProducts'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {firstName, isAdmin} = props
+  const {firstName} = props
 
   return (
     <div className="homePage">

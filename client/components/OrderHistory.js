@@ -10,18 +10,20 @@ class OrderHistory extends React.Component {
   render() {
     const orders = this.props.history || []
     return (
-      <div>
+      <div className="orderSummary">
         <ol>
           {orders.map(order => (
             <li key={order.id}>
-              <p>Date ordered: {order.createdAt}</p>
+              <p>Date ordered: {order.updatedAt}</p>
               <p>Shipping Information:</p>
-              <p>{order.name}</p>
-              <p>{order.addressLine1}</p>
               <p>
+                {order.name}
+                <br />
+                {order.addressLine1}
+                <br />
                 {order.city}, {order.state}
               </p>
-              <Table striped bordered hover size="small">
+              <Table striped bordered hover size="small" id="orderHistory">
                 <thead>
                   <tr>
                     <th>Item</th>
