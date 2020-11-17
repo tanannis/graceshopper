@@ -33,6 +33,8 @@ export class AllProducts extends React.Component {
       filter: evt.target.value
     })
   }
+
+  // this render function is ~100 lines long. Can we break it up a bit by defining a separate component for a productCard or for the filter section?
   render() {
     const isAdmin = this.props.isAdmin
     const {filter} = this.state

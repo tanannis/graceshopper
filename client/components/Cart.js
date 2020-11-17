@@ -10,6 +10,8 @@ import {
 } from '../store/cart'
 
 export class Cart extends React.Component {
+
+  // you don't need async/await here as this is handled in the thunk!
   async componentDidMount() {
     await this.props.getCart()
   }
@@ -22,6 +24,7 @@ export class Cart extends React.Component {
     await this.props.updateQuantity(id)
   }
 
+  // could we move the number of products and total to state?
   render() {
     const cart = this.props.cart || {}
     const products = cart.products

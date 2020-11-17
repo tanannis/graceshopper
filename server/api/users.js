@@ -3,6 +3,7 @@ const {User} = require('../db/models')
 const permit = require('./authorization')
 module.exports = router
 
+// same as permit? Safe to remove?
 function isAdmin(req, res, next) {
   if (req.user && req.user.userType !== 'admin') {
     res.status(403).json({message: 'Forbidden'})
@@ -11,6 +12,7 @@ function isAdmin(req, res, next) {
   }
 }
 
+// does permit take any inputs?
 router.get('/', permit(['admin']), async (req, res, next) => {
   try {
     const users = await User.findAll({

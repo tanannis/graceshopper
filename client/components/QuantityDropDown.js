@@ -25,19 +25,27 @@ class QuantityDropDown extends React.Component {
   handleSubmit = product => {
     let currentProductId = product.id
     let productsInCart = this.props.cart.products
-    let productToUpdate = productsInCart.filter(
+    let productToUpdate = productsInCart.filter( // check if item is in cart
       item => item.id === currentProductId
     )
+
+    // item is already in our cart, let's change quantity
     if (productToUpdate.length > 0) {
       let orderToUpdate = productToUpdate[0].orderItem
+      // which page are we on? NOT cart we add the quantity to what is already in cart
+      // let's check explicitly that this is NOT the cart (or convert to a switch)
       if (!this.props.renderLocation) {
         orderToUpdate.quantity =
           orderToUpdate.quantity + this.state.selectedQuantity
-      } else if (this.props.renderLocation === 'cart') {
+      } 
+      // if we are in cart, then we replace the quantity with what was selected
+      else if (this.props.renderLocation === 'cart') {
         orderToUpdate.quantity = this.state.selectedQuantity
       }
       this.props.updateQuantity(orderToUpdate)
-    } else {
+    } 
+    // this item is not in our cart, so it's a new order item
+    else {
       let newOrderItem = {
         quantity: this.state.selectedQuantity,
         orderId: this.props.cart.id,
@@ -67,6 +75,7 @@ class QuantityDropDown extends React.Component {
     })
   }
 
+  // a lot of logic in this render. Considerations: write a function in the class to handle some of this logic and/or use number inputs instead of dropdowns
   render() {
     // LOADING CHECK
     if (this.state.loading === 'loading') {
@@ -77,6 +86,8 @@ class QuantityDropDown extends React.Component {
     const product = this.props.product
 
     // DETERMINING NUM CURRENT ITEM IN CART ALREADY (CONSIDER MAKING RE_USABLE FUNCTION TO USE WITH SUBMIT)
+    // make this a separate function: define input and output (itemsAlreadyInCart?)
+    // combine with below code
     let itemsAlreadyInCart = 0
     let currentProductId = product.id
     let productsInCart = this.props.cart.products || []

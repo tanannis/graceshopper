@@ -3,6 +3,8 @@ const {Product, Order, OrderItem} = require('../db/models')
 const nodeMailer = require('nodemailer')
 module.exports = router
 
+// General note: to prevent our Express routes from getting too big and to reduce repeated logic, can we take some logic out of these routes and put them in reusable functions? What about Sequelize class or instance methods for actions like finding a user's open cart?
+
 //GET /api/cart
 router.get('/', async (req, res, next) => {
   try {
@@ -33,6 +35,8 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// grabbing cart twice in this one? (orderToUpdate vs. cart)
 
 // checkout close order
 router.put('/checkout', async (req, res, next) => {
