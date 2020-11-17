@@ -29,8 +29,6 @@ img {
   max-height: 500px;
 }
 
-/* Riley took button styling from JPFP - but we can always change it! */
-
 button {
   border: none;
   background-color: #7b5b83;
@@ -78,34 +76,9 @@ button {
   justify-content: space-around;
 }
 
-/* .productBox {
-  text-align: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  margin: 15px;
-  width: 300px;
-  background-color: #ece1f2;
-  border-radius: 10px;
-} */
-
-/* .productName {
-  height: 40px;
-} */
-
 .cartContainer {
   width: 100%;
 }
-
-/* .productContainer {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  margin-top: 15px;
-  margin-right: 15px;
-  border: black solid 2px;
-  width: 400px;
-} */
 
 .productImage {
   width: 18em;

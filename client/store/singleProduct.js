@@ -61,10 +61,10 @@ export const deleteProduct = id => {
 }
 
 export const addProduct = product => {
-  // if (!campus.imageUrl) {
-  //   campus.imageUrl =
-  //     "https://media.istockphoto.com/vectors/vector-school-building-vector-id186655818?k=6&m=186655818&s=612x612&w=0&h=4LAjSdZViLIyvYNILscpMjbkd2e6_2mPa3yf-cStV3Q=";
-  // }
+  if (!product.imageUrl) {
+    product.imageUrl =
+      'https://snellservices.com/wp-content/uploads/2019/07/image-coming-soon.jpg'
+  }
   return async () => {
     try {
       await axios.post('/api/products', product)
