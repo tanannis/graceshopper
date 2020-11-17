@@ -71,8 +71,17 @@ class CheckoutPage extends React.Component {
                 billingAddress
                 shippingAddress
                 amount={total}
-                id="checkOutButton"
-              />
+                label="Get the Goods!"
+                name="Grace Bakes"
+                description="Where baking happens."
+                image="/cupcake.svg"
+                ComponentClass="div"
+                panelLabel="Hope You're Hungry!"
+              >
+                <button className="buttonCheckout" type="button">
+                  Get the Goods!
+                </button>
+              </StripeCheckout>
             </div>
           </div>
         </>
