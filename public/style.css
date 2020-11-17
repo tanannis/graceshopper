@@ -241,3 +241,10 @@ button {
 .allUsersContainer {
   margin: 20px;
 }
+
+.buttonCheckout {
+  background-color: #7b5b83;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+}
