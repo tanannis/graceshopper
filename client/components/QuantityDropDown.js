@@ -105,7 +105,7 @@ class QuantityDropDown extends React.Component {
 
     return (
       <div className="dropDownRow">
-        <div>Quantity:</div>
+        {!this.props.renderLocation ? <div>Quantity:</div> : <></>}
         <div>
           <select
             name="quantity"

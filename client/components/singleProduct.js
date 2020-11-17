@@ -79,6 +79,7 @@ class SingleProduct extends React.Component {
                       <QuantityDropDown
                         product={this.props.product}
                         bttnText="Add to cart!"
+                        renderLocation="singleQuantity"
                       />{' '}
                     </td>
                   </tr>
