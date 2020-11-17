@@ -76,6 +76,12 @@ button {
   justify-content: space-around;
 }
 
+.productFilter {
+  width: 90%;
+  margin-left: 80px;
+  margin-top: 20px;
+}
+
 .cartContainer {
   width: 100%;
 }
@@ -199,6 +205,7 @@ button {
   text-align: center;
 }
 
+
 .quantitySelect {
   width: 50px;
 }
@@ -220,4 +227,23 @@ button {
   border-radius: 5px;
   padding: 5px;
   margin-top: 10px;
+}
+.thankYou {
+  margin: 50px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  /* justify-content: center; */
+}
+
+.thankYouContent {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#forkImage {
+  margin: 50px;
 }
