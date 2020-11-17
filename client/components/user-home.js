@@ -12,12 +12,16 @@ export const UserHome = props => {
     <div className="homePage">
       <div className="cupcakeBackground" />
       <div>{firstName && <h4>Welcome back, {firstName}!</h4>}</div>
-      <div className="homePageContent">
-        <h1>GRACE BAKES</h1>
+
+      <div className="homeCenter">
+        <div className="homePageContent">
+          <h1 className="homeTitle">Grace Bakes</h1>
+        </div>
+        <div className="homePageContent">
+          <h3>Some only dream of cake, we bake it happen!</h3>
+        </div>
       </div>
-      <div className="homePageContent">
-        <h3>Some only dream of cake, we bake it happen!</h3>
-      </div>
+
       <div className="homePageContent">
         <img
           id="homePageImg"
