@@ -30,7 +30,8 @@ class QuantityDropDown extends React.Component {
     )
     if (productToUpdate.length > 0) {
       let orderToUpdate = productToUpdate[0].orderItem
-      if (!this.props.renderLocation) {
+      if (this.props.renderLocation !== 'cart') {
+        console.log(orderToUpdate.quantity)
         orderToUpdate.quantity =
           orderToUpdate.quantity + this.state.selectedQuantity
       } else if (this.props.renderLocation === 'cart') {
@@ -89,12 +90,12 @@ class QuantityDropDown extends React.Component {
 
     // DETERMINING DROP-DOWN LENGTH
     let dropDownLength
-    if (!this.props.renderLocation) {
+    if (this.props.renderLocation !== 'cart') {
       dropDownLength = product.quantity - itemsAlreadyInCart || 0
     } else {
       dropDownLength = product.quantity || 0
     }
-    if (dropDownLength === 0 && !this.props.renderLocation) {
+    if (dropDownLength === 0 && this.props.renderLocation !== 'cart') {
       return <div>All available items in cart!</div>
     }
     if (dropDownLength < 0) {

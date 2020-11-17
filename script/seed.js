@@ -148,11 +148,11 @@ const productsArray = [
     productType: 'pastry'
   },
   {
-    name: 'Organic Coffee bean',
+    name: 'Organic Coffee Bean',
     imageUrl:
       'https://i.ibb.co/cx7J4qG/blank-realistic-paper-packaging-coffee-bag-vector-5161680.jpg',
     description:
-      'Try our home roast oraganic coffee beans, medium roasted with a special technique to give you a unique coffee experience.',
+      'Try our home roast organic coffee beans, medium roasted with a special technique to give you a unique coffee experience.',
     price: 3000,
     quantity: 10,
     productType: 'beverage'
