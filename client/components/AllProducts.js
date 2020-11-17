@@ -37,7 +37,7 @@ export class AllProducts extends React.Component {
     const isAdmin = this.props.isAdmin
     const {filter} = this.state
     const products = this.props.products.filter(product => {
-      if (filter === 'All products') return product
+      if (filter === 'All Products') return product
       if (filter === 'Pastry') return product.productType === 'pastry'
       if (filter === 'Beverage') return product.productType === 'beverage'
     })
