@@ -199,9 +199,9 @@ router.get('/history/:userId', async (req, res, next) => {
       (req.user.userType !== 'admin' && req.params.userId != req.user.id)
     )
       return res.sendStatus(401)
-    const orders = await req.user.getOrders({
+    const orders = await Order.findAll({
       include: Product,
-      where: {status: 'closed'}
+      where: {status: 'closed', userId: req.params.userId}
     })
     res.send(orders)
   } catch (error) {
