@@ -42,6 +42,10 @@ button {
   background-color: #7b5b83;
 }
 
+#authButton {
+  background-color: #7b5b83;
+}
+
 .cart {
   margin: 20px;
 }
@@ -54,7 +58,7 @@ button {
 }
 
 .emptyCart {
-  margin: 20px;
+  margin: 50px;
   text-align: center;
 }
 
@@ -217,7 +221,6 @@ button {
   text-align: center;
 }
 
-
 .quantitySelect {
   width: 50px;
 }
@@ -226,7 +229,6 @@ button {
   width: 50%;
 }
 
-
 .orderSummary {
   margin: 20px;
 }
@@ -234,7 +236,6 @@ button {
 .allUsersContainer {
   margin: 20px;
 }
-
 
 .buttonCheckout {
   background-color: #7b5b83;
@@ -279,4 +280,19 @@ button {
   position: fixed;
   bottom: 10px;
   right: 10px;
+}
+
+#googleButton {
+  background-image: url('btn_google_signin_light_normal_web.png');
+  background-color: white;
+  border-color: #888;
+  box-shadow: 1px 1px 1px grey;
+  background-size: contain;
+  width: 160px;
+  height: 40px;
+}
+
+.authButtonBox {
+  display: flex;
+  justify-content: space-evenly;
 }
