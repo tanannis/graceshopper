@@ -2,21 +2,21 @@
 
 http://gracebakes.herokuapp.com/home
 
-Welcome to Grace Bakes, our ecommerce platform! Grace Bakes is online bakery that specialized in sweet treats. Special thanks to our bakers: Annie, Annis, Laura, Riley =)
+Welcome to Grace Bakes, our ecommerce platform! Grace Bakes is an online bakery that specializes in sweet treats. Special thanks to our bakers: Annie, Annis, Laura, Riley =)
 
 ## Setup Secret File
 
-Don't forget to create a secret.js file and add it to .gitigore. Your secret file should include below info:
+Don't forget to create a secret.js file and add it to your .gitigore file. Your secret file should include the info below:
 
 * Google Oauth Info:
 
-- process.env.GOOGLE_CLIENT_ID = "YOU GOOGLE CLIENT ID GOES HERE"
-- process.env.GOOGLE_CLIENT_SECRET = 'YOUR GOOGLE CLIENT SECRET GOES HERE'
+- process.env.GOOGLE_CLIENT_ID = "YOUR GOOGLE CLIENT ID GOES HERE"
+- process.env.GOOGLE_CLIENT_SECRET = "YOUR GOOGLE CLIENT SECRET GOES HERE"
 
 * Google account to send confirmation emails :
 
-- process.env.GOOGLE_EMAIL = 'YOUR GOOGLE EMAIL GOES HERE'
-- process.env.GOOGLE_PASSWORD = ''YOUR GOOGLE PASSWORD GOES HERE'
+- process.env.GOOGLE_EMAIL = "YOUR GOOGLE EMAIL GOES HERE"
+- process.env.GOOGLE_PASSWORD = "YOUR GOOGLE PASSWORD GOES HERE"
 
 * Stripe API Info:
 
