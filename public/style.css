@@ -29,8 +29,6 @@ img {
   max-height: 500px;
 }
 
-/* Riley took button styling from JPFP - but we can always change it! */
-
 button {
   border: none;
   background-color: #7b5b83;
@@ -83,6 +81,7 @@ button {
   margin-left: 80px;
   margin-top: 20px;
 }
+
 .cartContainer {
   width: 100%;
 }

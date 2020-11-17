@@ -1,11 +1,9 @@
 import axios from 'axios'
-// import history from '../history'
 
 /**
  * ACTION TYPES
  */
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
-// const REMOVE_USER = 'REMOVE_USER'
 
 /**
  * INITIAL STATE
@@ -19,7 +17,6 @@ const getAllProducts = products => ({
   type: GET_ALL_PRODUCTS,
   products
 })
-// const removeUser = () => ({type: REMOVE_USER})
 
 /**
  * THUNK CREATORS

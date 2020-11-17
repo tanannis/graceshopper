@@ -7,20 +7,16 @@ const Order = db.define('order', {
     defaultValue: 'open'
   },
   sessionId: {type: Sequelize.STRING},
-
   userId: {type: Sequelize.INTEGER},
-
   name: {
     type: Sequelize.STRING
   },
-
   email: {
     type: Sequelize.STRING,
     validate: {
       isEmail: true
     }
   },
-
   addressLine1: {
     type: Sequelize.STRING
   },
