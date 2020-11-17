@@ -44,6 +44,10 @@ button {
   background-color: #7b5b83;
 }
 
+button.StripeCheckout {
+  background-color: #7b5b83;
+}
+
 .cart {
   margin: 20px;
 }
@@ -199,6 +203,15 @@ button {
 .spinner {
   margin-top: 100px;
   text-align: center;
+}
+
+
+.quantitySelect {
+  width: 50px;
+}
+
+#orderHistory {
+  width: 50%;
 }
 
 .thankYou {

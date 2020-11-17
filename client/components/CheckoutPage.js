@@ -63,6 +63,7 @@ class CheckoutPage extends React.Component {
             billingAddress
             shippingAddress
             amount={total}
+            id="checkOutButton"
           />
         </>
       )
