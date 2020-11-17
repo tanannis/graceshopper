@@ -206,6 +206,7 @@ button {
   text-align: center;
 }
 
+
 .quantitySelect {
   width: 50px;
 }
@@ -214,6 +215,7 @@ button {
   width: 50%;
 }
 
+
 .orderSummary {
   margin: 20px;
 }
@@ -221,6 +223,7 @@ button {
 .allUsersContainer {
   margin: 20px;
 }
+
 
 .buttonCheckout {
   background-color: #7b5b83;
@@ -236,7 +239,6 @@ button {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  /* justify-content: center; */
 }
 
 .thankYouContent {
