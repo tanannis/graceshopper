@@ -11,39 +11,49 @@ class OrderHistory extends React.Component {
     const orders = this.props.history || []
     return (
       <div className="orderSummary">
-        <ol>
-          {orders.map(order => (
-            <li key={order.id}>
-              <p>Date ordered: {order.updatedAt}</p>
-              <p>Shipping Information:</p>
-              <p>
-                {order.name}
-                <br />
-                {order.addressLine1}
-                <br />
-                {order.city}, {order.state}
-              </p>
-              <Table striped bordered hover size="small" id="orderHistory">
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                  </tr>
-                  {order.products.map(product => {
-                    return (
-                      <tr key={product.id}>
-                        <td>{product.name}</td>
-                        <td>{product.priceDisplay}</td>
-                        <td>{product.orderItem.quantity}</td>
-                      </tr>
-                    )
-                  })}
-                </thead>
-              </Table>
-            </li>
-          ))}
-        </ol>
+        {orders.length === 0 ? (
+          <h4 className="emptyCart">
+            No orders yet! Head to{' '}
+            <a className="link" href="/products">
+              our goodies
+            </a>{' '}
+            page to grab some sweet treats!
+          </h4>
+        ) : (
+          <ol>
+            {orders.map(order => (
+              <li key={order.id}>
+                <p>Date ordered: {order.updatedAt}</p>
+                <p>Shipping Information:</p>
+                <p>
+                  {order.name}
+                  <br />
+                  {order.addressLine1}
+                  <br />
+                  {order.city}, {order.state}
+                </p>
+                <Table striped bordered hover size="small" id="orderHistory">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                    </tr>
+                    {order.products.map(product => {
+                      return (
+                        <tr key={product.id}>
+                          <td>{product.name}</td>
+                          <td>{product.priceDisplay}</td>
+                          <td>{product.orderItem.quantity}</td>
+                        </tr>
+                      )
+                    })}
+                  </thead>
+                </Table>
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
     )
   }
