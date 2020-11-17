@@ -214,6 +214,7 @@ button {
   width: 50%;
 }
 
+
 .orderSummary {
   margin: 20px;
 }
@@ -222,12 +223,14 @@ button {
   margin: 20px;
 }
 
+
 .buttonCheckout {
   background-color: #7b5b83;
   border-radius: 5px;
   padding: 5px;
   margin-top: 10px;
 }
+
 .thankYou {
   margin: 50px;
   padding: 50px;
@@ -235,7 +238,6 @@ button {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  /* justify-content: center; */
 }
 
 .thankYouContent {
