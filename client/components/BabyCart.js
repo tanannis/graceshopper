@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
 import {Cart2} from 'react-bootstrap-icons'
 import {NavLink} from 'react-router-dom'
-import {Nav} from 'react-bootstrap'
+import Nav from 'react-bootstrap/Nav'
 
 export class BabyCart extends React.Component {
   async componentDidMount() {

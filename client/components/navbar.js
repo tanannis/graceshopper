@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import BabyCart from './BabyCart'
-import {Nav, Navbar} from 'react-bootstrap'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
 
 const NavbarComponent = ({handleClick, isLoggedIn, isAdmin, userId}) => (
   <div>

@@ -53,9 +53,9 @@ export class AllProducts extends React.Component {
             value={this.setState.filter}
             name="productTypeFilter"
           >
-            <option>all products</option>
-            <option>pastry</option>
-            <option>beverage</option>
+            <option>All Products</option>
+            <option>Pastry</option>
+            <option>Beverage</option>
           </select>
         </div>
         <div className="productsBody">
@@ -63,64 +63,67 @@ export class AllProducts extends React.Component {
             {products && products.length ? (
               products.map(product => {
                 return (
-                  <Card
-                    style={{width: '18rem', margin: '1em'}}
-                    key={product.id}
-                  >
-                    <Card.Header
-                      as="a"
-                      href={`/products/${product.id}`}
-                      role="img"
-                      alt={product.name}
-                      className="productImage"
-                      style={{backgroundImage: `url(${product.imageUrl})`}}
-                    />
-                    <Card.Body>
-                      <Card.Link
+                  <div className="col-12 col-lg-3 col-md-6">
+                    <Card
+                      className=""
+                      // style={{width: '18rem', margin: '1em'}}
+                      key={product.id}
+                    >
+                      <Card.Header
+                        as="a"
                         href={`/products/${product.id}`}
                         role="img"
                         alt={product.name}
                         className="productImage"
                         style={{backgroundImage: `url(${product.imageUrl})`}}
                       />
-                    </Card.Body>
-                    <Card.Body>
-                      <a href={`/products/${product.id}`} className="link">
-                        <Card.Title>{product.name}</Card.Title>
-                      </a>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                      <ListGroupItem>
-                        Price: {product.priceDisplay}
-                      </ListGroupItem>
-                      <ListGroupItem id="quantityRow">
-                        <div>Quantity:</div>
-                        <QuantityDropDown
-                          product={product}
-                          bttnText="Add to cart!"
+                      <Card.Body>
+                        <Card.Link
+                          href={`/products/${product.id}`}
+                          role="img"
+                          alt={product.name}
+                          className="productImage"
+                          style={{backgroundImage: `url(${product.imageUrl})`}}
                         />
-                      </ListGroupItem>
-                    </ListGroup>
-                    <Card.Body>
-                      <Card.Link
-                        href={`/products/${product.id}`}
-                        className="link"
-                      >
-                        View Details
-                      </Card.Link>
-                      <br />
-                      {isAdmin && (
-                        <Button
-                          id="cartButton"
-                          variant="dark"
-                          className="removeProductButton"
-                          onClick={() => this.handleClick(product.id)}
+                      </Card.Body>
+                      <Card.Body>
+                        <a href={`/products/${product.id}`} className="link">
+                          <Card.Title>{product.name}</Card.Title>
+                        </a>
+                      </Card.Body>
+                      <ListGroup className="list-group-flush">
+                        <ListGroupItem>
+                          Price: {product.priceDisplay}
+                        </ListGroupItem>
+                        <ListGroupItem id="quantityRow">
+                          {/* <div>Quantity:</div> */}
+                          <QuantityDropDown
+                            product={product}
+                            bttnText="Add to cart!"
+                          />
+                        </ListGroupItem>
+                      </ListGroup>
+                      <Card.Body>
+                        <Card.Link
+                          href={`/products/${product.id}`}
+                          className="link"
                         >
-                          Remove Product
-                        </Button>
-                      )}
-                    </Card.Body>
-                  </Card>
+                          View Details
+                        </Card.Link>
+                        <br />
+                        {isAdmin && (
+                          <Button
+                            id="cartButton"
+                            variant="dark"
+                            className="removeProductButton"
+                            onClick={() => this.handleClick(product.id)}
+                          >
+                            Remove Product
+                          </Button>
+                        )}
+                      </Card.Body>
+                    </Card>
+                  </div>
                 )
               })
             ) : (
