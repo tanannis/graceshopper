@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchCart, fetchCheckoutCart} from '../store/cart'
 import Confirmation from './Confirmation'
 import StripeCheckout from 'react-stripe-checkout'
+import {Table} from 'react-bootstrap'
 import Loader from './Loader'
 
 class CheckoutPage extends React.Component {
@@ -42,29 +43,38 @@ class CheckoutPage extends React.Component {
     } else if (!this.state.orderProcessed && products && products.length) {
       return (
         <>
-          <h2>Checkout page!</h2>
           <div className="orderSummary">
             <p>Order Summary:</p>
-            <ul>
-              {products.map(product => {
-                return (
-                  <li key={product.id}>
-                    {product.name} ({product.orderItem.quantity}) &mdash;{' '}
-                    {product.priceDisplay}
-                  </li>
-                )
-              })}
-            </ul>
+            <Table striped bordered hover size="small" id="orderHistory">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+                {products.map(product => {
+                  return (
+                    <tr key={product.id}>
+                      <td>{product.name}</td>
+                      <td>{product.priceDisplay}</td>
+                      <td>{product.orderItem.quantity}</td>
+                    </tr>
+                  )
+                })}
+              </thead>
+            </Table>
             Total Price: ${(total / 100).toFixed(2)}
+            <div>
+              <StripeCheckout
+                stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                token={this.handleToken}
+                billingAddress
+                shippingAddress
+                amount={total}
+                id="checkOutButton"
+              />
+            </div>
           </div>
-          <StripeCheckout
-            stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-            token={this.handleToken}
-            billingAddress
-            shippingAddress
-            amount={total}
-            id="checkOutButton"
-          />
         </>
       )
     } else {

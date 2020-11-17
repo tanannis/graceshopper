@@ -44,10 +44,6 @@ button {
   background-color: #7b5b83;
 }
 
-button.StripeCheckout {
-  background-color: #7b5b83;
-}
-
 .cart {
   margin: 20px;
 }
@@ -57,6 +53,11 @@ button.StripeCheckout {
 
 .cartContainer {
   margin: 20px;
+}
+
+.emptyCart {
+  margin: 20px;
+  text-align: center;
 }
 
 .buttonBox {
@@ -214,6 +215,15 @@ button.StripeCheckout {
   width: 50%;
 }
 
+
+.orderSummary {
+  margin: 20px;
+}
+
+.allUsersContainer {
+  margin: 20px;
+}
+
 .thankYou {
   margin: 50px;
   padding: 50px;
@@ -221,7 +231,6 @@ button.StripeCheckout {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  /* justify-content: center; */
 }
 
 .thankYouContent {

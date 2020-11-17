@@ -101,7 +101,15 @@ export class Cart extends React.Component {
         </div>
       )
     } else {
-      return <div>Shopping Cart Empty</div>
+      return (
+        <h4 className="emptyCart">
+          Your shopping cart is currently empty! Head to{' '}
+          <a className="link" href="/products">
+            our goodies
+          </a>{' '}
+          page to grab some sweet treats!
+        </h4>
+      )
     }
   }
 }
