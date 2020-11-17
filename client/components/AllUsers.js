@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllUsers, fetchUpdatedUser} from '../store/allUsers'
-import {Table} from 'react-bootstrap'
+import Table from 'react-bootstrap/Table'
 
 class AllUsers extends React.Component {
   async componentDidMount() {

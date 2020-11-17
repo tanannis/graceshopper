@@ -105,6 +105,7 @@ class QuantityDropDown extends React.Component {
 
     return (
       <div className="dropDownRow">
+        <div>Quantity:</div>
         <div>
           <select
             name="quantity"

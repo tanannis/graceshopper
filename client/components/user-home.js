@@ -12,6 +12,7 @@ export const UserHome = props => {
 
   return (
     <div className="homePage">
+      <div className="cupcakeBackground" />
       <div>{firstName && <h4>Welcome back, {firstName}!</h4>}</div>
       <div className="homePageContent">
         <h1>GRACE BAKES</h1>
@@ -22,15 +23,16 @@ export const UserHome = props => {
       <div className="homePageContent">
         <img
           id="homePageImg"
-          src="https://cdn.pixabay.com/photo/2017/04/22/00/53/cupcakes-2250367_960_720.jpg"
+          //README: replace with a logo or another fun image?
+          // src="https://cdn.pixabay.com/photo/2017/04/22/00/53/cupcakes-2250367_960_720.jpg"
         />
       </div>
-      <div className="homePageContent">
-        Icons made by{' '}
+      <div className="homePageContent copyright">
+        Icons made by&nbsp;
         <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
-          Freepik
-        </a>{' '}
-        from{' '}
+          Freepik&nbsp;
+        </a>
+        &nbsp;from&nbsp;
         <a href="https://www.flaticon.com/" title="Flaticon">
           www.flaticon.com
         </a>
