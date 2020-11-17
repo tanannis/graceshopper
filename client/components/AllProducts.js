@@ -102,15 +102,8 @@ export class AllProducts extends React.Component {
                           />
                         </ListGroupItem>
                       </ListGroup>
-                      <Card.Body>
-                        <Card.Link
-                          href={`/products/${product.id}`}
-                          className="link"
-                        >
-                          View Details
-                        </Card.Link>
-                        <br />
-                        {isAdmin && (
+                      {isAdmin && (
+                        <Card.Body>
                           <Button
                             id="cartButton"
                             variant="dark"
@@ -119,8 +112,8 @@ export class AllProducts extends React.Component {
                           >
                             Remove Product
                           </Button>
-                        )}
-                      </Card.Body>
+                        </Card.Body>
+                      )}
                     </Card>
                   </div>
                 )
