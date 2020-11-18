@@ -4,6 +4,13 @@ http://gracebakes.herokuapp.com/home
 
 Welcome to Grace Bakes, our ecommerce platform! Grace Bakes is an online bakery that specializes in sweet treats. Special thanks to our bakers: Annie, Annis, Laura, Riley =)
 
+## Start
+
+Running `npm install` and `npm run start-dev` will make great things happen!
+
+If you want to run the server and/or `webpack` separately, you can also
+`npm run start-server` and `npm run build-client`.
+
 ## Setup Secret File
 
 Don't forget to create a secret.js file and add it to your .gitigore file. Your secret file should include the info below:
@@ -23,9 +30,15 @@ Don't forget to create a secret.js file and add it to your .gitigore file. Your 
 - process.env.STRIPE_SECRET_KEY = "YOUR STRIPE SECRET KEY GOES HERE"
 - process.env.STRIPE_PUBLIC_KEY = "YOUR STRIPE PUBLIC KEY GOES HERE"
 
-## Start
+## To place an order
 
-Running `npm install` and `npm run start-dev` will make great things happen!
+* To check out using below credit card # for demo purpose only:
 
-If you want to run the server and/or `webpack` separately, you can also
-`npm run start-server` and `npm run build-client`.
+- 4242 4242 4242 4242
+- exp 11/25
+- cvs
+
+## Login as Admin
+
+* email: jb@email.com
+* password: ilovecake123
