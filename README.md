@@ -4,6 +4,12 @@ http://gracebakes.herokuapp.com/home
 
 Welcome to Grace Bakes, our ecommerce platform! Grace Bakes is an online bakery that specializes in sweet treats. Special thanks to our bakers: Annie, Annis, Laura, Riley =)
 
+
+## Want to test it as Admin?
+Username: jb@email.com
+Password: ilovecake123
+
+
 ## Setup Secret File
 
 Don't forget to create a secret.js file and add it to your .gitigore file. Your secret file should include the info below:
