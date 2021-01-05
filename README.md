@@ -6,8 +6,10 @@ Welcome to Grace Bakes, our ecommerce platform! Grace Bakes is an online bakery 
 
 
 ## Want to test it as Admin?
-Username: jb@email.com
-Password: ilovecake123
+
+* Username: jb@email.com
+
+* Password: ilovecake123
 
 
 ## Setup Secret File
